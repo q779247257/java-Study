@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
+import io.netty.util.ReferenceCountUtil;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,6 +26,15 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf in = (ByteBuf)msg;
         System.out.println("Server Accept:"+in.toString(CharsetUtil.UTF_8));
         ctx.write(in);
+/**
+ * //这两个也可以写入数据，但是不常用，这么写的话数据路径相对于上面的写入方法会更长一些
+ ctx.channel().writeAndFlush(in);
+ ctx.pipeline().write(in);
+ */
+
+//        释放消息
+//        ReferenceCountUtil.release(msg);
+
     }
 
     /**

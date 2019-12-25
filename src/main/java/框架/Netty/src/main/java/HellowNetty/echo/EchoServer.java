@@ -4,6 +4,8 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -35,10 +37,14 @@ public class EchoServer {
         try{
             //服务端启动必备
             ServerBootstrap b = new ServerBootstrap();
+            //切换Epoll通讯模式（1）
+//            EpollEventLoopGroup eventExecutors = new EpollEventLoopGroup();
             //把线程组交给启动类
             b.group(group)
                     //指明服务端使用NIO进行网络通讯
                     .channel(NioServerSocketChannel.class)
+                    //切换Epoll通讯模式（2）
+//                    .channel(EpollServerSocketChannel.class);
                     //指明服务器监听端口
                     .localAddress(new InetSocketAddress(port))
                     //指定处理器,接受到连接请求，新启一个socket通信，也就是所谓的channel。
