@@ -14,7 +14,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
      * @throws Exception
      */
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf msg) throws Exception {
-        System.out.println("Client accetp:"+msg.toString(CharsetUtil.UTF_8));
+        System.out.println("Client accetp :"+msg.toString(CharsetUtil.UTF_8));
     }
 
     /**
@@ -26,10 +26,11 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //往服务器写数据
         ctx.writeAndFlush(Unpooled.copiedBuffer("hellow Netty",CharsetUtil.UTF_8));
+
     }
 
     /**
-     * 异常梳理
+     * 异常处理
      * @param ctx
      * @param cause
      * @throws Exception

@@ -1,22 +1,26 @@
-package HellowNetty.echo;
+package HellowNetty.粘包拆包;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
-import io.netty.util.ReferenceCountUtil;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * netty 提供的一个注解，加上此注解后，多个线程可以共享Handler
- * 这名handler可以再多个channle之间共享，一位了这个实现必须是线程安全的
+ * @Author: 轩轩
+ * @Date: 2019/12/25 18:26
+ * @description: 服务端处理消息类
  */
 @ChannelHandler.Sharable
-public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+public class MsgServerHandler extends ChannelInboundHandlerAdapter {
+    private AtomicInteger counter = new AtomicInteger(0);
     /**\
-     * 服务器读取到网络数据后的处理
-     * @param ctx 通道处理程序上下文
+     *
+     * @par服务器读取到网络数据后的处理am ctx 通道处理程序上下文
      * @param msg 字节缓冲
      * @throws Exception
      */
@@ -24,17 +28,11 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //Netty实现的缓冲区
         ByteBuf in = (ByteBuf)msg;
-        System.out.println("Server Accept:"+in.toString(CharsetUtil.UTF_8));
-        ctx.write(in);
-/**
- * //这两个也可以写入数据，但是不常用，这么写的话数据路径相对于上面的写入方法会更长一些
- ctx.channel().writeAndFlush(in);
- ctx.pipeline().write(in);
- */
-
-//        释放消息
-//        ReferenceCountUtil.release(msg);
-
+        String request = in.toString(CharsetUtil.UTF_8);
+        System.out.println("Server Accept:"+request+counter.incrementAndGet());
+        //应答客户端
+        String resp  = "你好！" + request + System.getProperty("line.separator");
+        ctx.write(Unpooled.copiedBuffer(resp,CharsetUtil.UTF_8));
     }
 
     /**
@@ -47,9 +45,8 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         //flush掉所有的数据
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).
                 //当flush完成以后，关闭连接
-                addListener(ChannelFutureListener.CLOSE);
+                        addListener(ChannelFutureListener.CLOSE);
     }
-
     /**
      * 发生异常后的处理
      * @param ctx

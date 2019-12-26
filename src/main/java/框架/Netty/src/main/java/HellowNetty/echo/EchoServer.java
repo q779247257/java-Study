@@ -3,6 +3,7 @@ package HellowNetty.echo;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
@@ -28,12 +29,15 @@ public class EchoServer {
         System.out.println("服务器即将启动");
         echoServer.start();
         System.out.println("服务器关闭");
+
     }
 
     public  void start() throws InterruptedException {
         final EchoServerHandler serverHandler = new EchoServerHandler();
         //线程组
         EventLoopGroup group = new NioEventLoopGroup();
+        //work可以传入到group中，服务端可以，客户端不可以
+        EventLoopGroup work = new NioEventLoopGroup();
         try{
             //服务端启动必备
             ServerBootstrap b = new ServerBootstrap();
@@ -41,6 +45,8 @@ public class EchoServer {
 //            EpollEventLoopGroup eventExecutors = new EpollEventLoopGroup();
             //把线程组交给启动类
             b.group(group)
+                    //金庸了Nagle算法，一旦配置之后，通道打开之后不可更改，childOption用于配置一些信息
+                    .childOption(ChannelOption.TCP_NODELAY,true)
                     //指明服务端使用NIO进行网络通讯
                     .channel(NioServerSocketChannel.class)
                     //切换Epoll通讯模式（2）
