@@ -23,6 +23,11 @@ public class ServerHandlerInit extends ChannelInitializer<SocketChannel> {
         //聚合器
         ph.addLast("aggre",
                 new HttpObjectAggregator(10*1024*1024));
+
+        //开启压缩
+        ph.addLast("comperessor", new HttpContentCompressor());
+
+
         //业务处理
         ph.addLast("busi",new BusiHandler());
 
