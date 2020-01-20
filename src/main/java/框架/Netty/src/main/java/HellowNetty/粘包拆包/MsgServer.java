@@ -10,6 +10,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 
 import java.net.InetSocketAddress;
 
@@ -36,6 +37,8 @@ public class MsgServer {
                     .localAddress(new InetSocketAddress(port))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            //限制传输大小
+                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
                             ch.pipeline().addLast(serverHandler);
                         }
                     });

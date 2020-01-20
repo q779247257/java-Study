@@ -4,9 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
-import io.netty.util.ReferenceCountUtil;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * netty 提供的一个注解，加上此注解后，多个线程可以共享Handler
@@ -20,6 +18,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
      * @param msg 字节缓冲
      * @throws Exception
      */
+
+
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //Netty实现的缓冲区

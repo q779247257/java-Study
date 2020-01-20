@@ -2,7 +2,6 @@ package HellowNetty.粘包拆包;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
@@ -13,7 +12,6 @@ import io.netty.util.CharsetUtil;
  * @description: Msg 客户端处理类，用于创造TCP的粘包、连包问题
  */
 public class MsgClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
-
 
     /**
      * 客户端读取到数据以后，触发的方法
