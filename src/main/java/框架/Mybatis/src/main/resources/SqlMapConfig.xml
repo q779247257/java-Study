@@ -3,6 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+    <settings>
+        <!--  启用延迟加载特性，不配置默认关闭该特性  ;-->
+        <setting name="lazyLoadingEnabled" value="true"></setting>
+        <!--   按需加载: false:使用关联属性，及时加载;    true,加载对象，则加载所有属性 ;-->
+        <setting name="aggressiveLazyLoading" value="true"/>
+    </settings>
+
     <!--给对象起别名-->
     <typeAliases>
             <typeAlias type="domain.User" alias="user"></typeAlias>

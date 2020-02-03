@@ -162,4 +162,21 @@ public class client {
         }
     }
 
+    /**
+     * 测试（使用延迟加载 + 嵌套对象）
+     */
+
+    @Test
+    public void userTest002() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
+        List<UserDetail> userDetails = userDetailMapper.selectAll();
+        System.out.println("info"+userDetails);
+    }
 }

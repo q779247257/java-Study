@@ -16,6 +16,12 @@
         <result column="address" property="address"></result>
         <result column="birthday" property="birthday"></result>
         <result column="user_id" property="userId"></result>
+        <!--关联查询
+            property 关联的实体参数
+            select 调用哪个方法进行查询
+            column 关联的数据库字段
+        -->
+        <association property="userLogin" select="dao.UserLoginMapper.findByid" column="user_id" />
     </resultMap>
 
 
