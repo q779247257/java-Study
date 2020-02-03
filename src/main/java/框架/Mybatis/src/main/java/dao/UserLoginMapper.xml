@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="dao.UserLoginMapper">
+    <!-- 增加myabtis的映射
+    id  对应的就是我们数据库的主键，如果有多个，我们这里需要配置相同的id标签
+    column   数据库的字段名称
+    property 对应的是实体的属性名
+    -->
+    <resultMap id="resultLogin" type="domain.UserLogin">
+        <id column="id" property="id"></id>
+
+        <result column="username" property="password"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+
+
+    <select id="findByid" parameterType="Integer" resultMap="resultLogin">
+        select * from user_login where id = #{id}
+    </select>
+</mapper>

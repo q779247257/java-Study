@@ -1,5 +1,9 @@
+import dao.UserDetailMapper;
+import dao.UserLoginMapper;
 import dao.UserMapper;
 import domain.User;
+import domain.UserDetail;
+import domain.UserLogin;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -131,4 +135,31 @@ public class client {
             System.out.println(s);
         }
     }
+
+    /**
+     * 测试（不通过延迟加载，使用多次查询出来）
+     */
+    @Test
+    public void userTest001() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
+        UserLoginMapper userLoginMapper = sqlSession.getMapper(UserLoginMapper.class);
+
+        //查询所有的userDetail
+        List<UserDetail> userDetails = userDetailMapper.selectAll();
+
+        for (UserDetail userDetail : userDetails){
+            //拿到userId
+            int userId = userDetail.getId();
+            UserLogin userLogin = userLoginMapper.findByid(userId);
+            System.out.println("info:"+userLogin);
+        }
+    }
+
 }
