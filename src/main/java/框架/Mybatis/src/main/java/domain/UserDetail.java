@@ -4,6 +4,7 @@ package domain;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: 轩轩
@@ -18,5 +19,6 @@ public class UserDetail {
     private String address;
     private Date birthday;
     private int userId;//关联UserLogin的id
-    private UserLogin userLogin;
+    private UserLogin userLogin;//嵌套对象
+    private List<Orders> ordersList;//嵌套集合
 }

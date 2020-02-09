@@ -19,6 +19,7 @@ public interface UserDetailMapper {
     //根据id查询UserDetail 利用resultMap进行嵌套对象   只使用一条SQL 语句
     UserDetail selectByIdOne(Integer id);
 
-
+    //根据User_Id 查询   （嵌套集合）
+    UserDetail selectByIdList(Integer id);
 
 }

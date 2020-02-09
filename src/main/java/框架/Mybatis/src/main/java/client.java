@@ -215,4 +215,22 @@ public class client {
         System.out.println("info:"+userDetail);
     }
 
+    /**
+     * 嵌套集合
+     * @throws IOException
+     */
+    @Test
+    public void userTest005() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
+        UserDetail userDetail = userDetailMapper.selectByIdList(3);
+        System.out.println("info:"+userDetail.getOrdersList());
+    }
+
 }

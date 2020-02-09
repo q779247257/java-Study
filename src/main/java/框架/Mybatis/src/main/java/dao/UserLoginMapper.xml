@@ -11,7 +11,7 @@
     <resultMap id="resultLogin" type="domain.UserLogin">
         <id column="id" property="id"></id>
 
-        <result column="username" property="password"></result>
+        <result column="username" property="username"></result>
         <result column="password" property="password"></result>
     </resultMap>
 

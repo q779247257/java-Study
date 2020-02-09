@@ -48,6 +48,28 @@
         </association>
     </resultMap>
 
+    <!--嵌套集合-->
+    <resultMap id="resultDetailList" type="domain.UserDetail">
+        <id column="id" property="id"></id>
+        <result column="nick_name" property="nickName"></result>
+        <result column="sex" property="sex"></result>
+        <result column="address" property="address"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="user_id" property="userId"></result>
+        <association property="userLogin" resultMap="userLoginOne"/>
+        <!--
+        property : POJO中的属性名
+        ofType : list泛型中的全限定类名或者别名
+        注： 嵌套的集合中的对象ID 不能和 被嵌套的对象的ID相同 否则只有一条数据
+        -->
+        <collection property="ordersList" ofType="domain.Orders">
+            <id column="ordesId" property="id"></id>
+            <result column="userId" property="user_id"></result>
+            <result column="number" property="number"></result>
+            <result column="createtime" property="createtime"></result>
+            <result column="note" property="note"></result>
+        </collection>
+    </resultMap>
 
 
     <select id="selectAll"  resultMap="resultDetail">
@@ -62,6 +84,20 @@
     <select id="selectByIdOne" resultMap="resultDetailOne" parameterType="Integer">
         select * from user_detail a , user_login b
         where a.user_id = b.id
+        and a.id = #{id}
+    </select>
+
+
+    <select id="selectByIdList" resultMap="resultDetailList"  parameterType="Integer">
+        select
+        a.* ,
+        o.id as ordesId ,
+        o.user_id as orderUserId ,
+        o.number ,
+        o.createtime ,
+        o.note
+        from user_detail a , orders o
+        where a.user_id = o.user_id
         and a.id = #{id}
     </select>
 
