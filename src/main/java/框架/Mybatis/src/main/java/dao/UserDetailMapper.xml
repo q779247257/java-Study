@@ -17,15 +17,27 @@
         <result column="birthday" property="birthday"></result>
         <result column="user_id" property="userId"></result>
         <!--关联查询
-            property 关联的实体参数
+            property 关联的实体参数 对应的POJP的属性名字
             select 调用哪个方法进行查询
             column 关联的数据库字段
         -->
-        <association property="userLogin" select="dao.UserLoginMapper.findByid" column="user_id" />
+        <association property="userLogin" select="dao.UserLoginMapper.findByid" column="user_id">
+            <!--嵌套对象区间-->
+            <id column="id" property="username"></id>
+
+            <result column="username" property="username"></result>
+            <result column="password" property="password"></result>
+        </association>
     </resultMap>
 
 
     <select id="selectAll"  resultMap="resultDetail">
         select * from user_detail
     </select>
+
+    <select id="selectById" resultMap="resultDetail" parameterType="Integer">
+        select * from user_detail where id = #{id}
+    </select>
+
+
 </mapper>

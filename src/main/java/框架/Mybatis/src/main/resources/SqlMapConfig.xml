@@ -7,8 +7,9 @@
     <settings>
         <!--  启用延迟加载特性，不配置默认关闭该特性  ;-->
         <setting name="lazyLoadingEnabled" value="true"></setting>
-        <!--   按需加载: false:使用关联属性，及时加载;    true,加载对象，则加载所有属性 ;-->
-        <setting name="aggressiveLazyLoading" value="true"/>
+        <!--   按需加载: false:使用关联属性，及时加载,不引用则不加载;
+                true,加载对象，则加载所有属性 ;-->
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <!--给对象起别名-->
@@ -36,7 +37,6 @@
     <mappers >
         <!--<mapper resource="User.xml"></mapper>-->
         <!--<mapper resource="UserMapper.xml"></mapper>-->
-
         <package name="dao"></package>
     </mappers>
 

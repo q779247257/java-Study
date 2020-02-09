@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
@@ -177,6 +176,25 @@ public class client {
         //4、根据反射获取接口的对象
         UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
         List<UserDetail> userDetails = userDetailMapper.selectAll();
-        System.out.println("info"+userDetails);
+        System.out.println(userDetails.get(0).getId());
     }
+
+    /**
+     * 嵌套对象
+     * @throws IOException
+     */
+    @Test
+    public void userTest003() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
+        UserDetail userDetail = userDetailMapper.selectById(1);
+        System.out.println("info:"+userDetail);
+    }
+
 }

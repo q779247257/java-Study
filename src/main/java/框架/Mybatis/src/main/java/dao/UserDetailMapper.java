@@ -11,4 +11,8 @@ import java.util.List;
  */
 public interface UserDetailMapper {
     List<UserDetail> selectAll();
+
+
+    //根据id查询UserDetail
+    UserDetail selectById(Integer id);
 }
