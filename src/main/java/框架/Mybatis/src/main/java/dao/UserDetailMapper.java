@@ -13,6 +13,12 @@ public interface UserDetailMapper {
     List<UserDetail> selectAll();
 
 
-    //根据id查询UserDetail
+    //根据id查询UserDetail 利用懒加载2条的sql语句
     UserDetail selectById(Integer id);
+
+    //根据id查询UserDetail 利用resultMap进行嵌套对象   只使用一条SQL 语句
+    UserDetail selectByIdOne(Integer id);
+
+
+
 }

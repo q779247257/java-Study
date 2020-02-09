@@ -31,12 +31,38 @@
     </resultMap>
 
 
+    <!--嵌套对象  一条SQL 语句-->
+    <resultMap id="userLoginOne" type="domain.UserLogin">
+        <id column="id" property="username"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+    <resultMap id="resultDetailOne" type="domain.UserDetail">
+        <id column="id" property="id"></id>
+        <result column="nick_name" property="nickName"></result>
+        <result column="sex" property="sex"></result>
+        <result column="address" property="address"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="user_id" property="userId"></result>
+        <association property="userLogin" resultMap="userLoginOne">
+        </association>
+    </resultMap>
+
+
+
     <select id="selectAll"  resultMap="resultDetail">
         select * from user_detail
     </select>
 
     <select id="selectById" resultMap="resultDetail" parameterType="Integer">
         select * from user_detail where id = #{id}
+    </select>
+
+
+    <select id="selectByIdOne" resultMap="resultDetailOne" parameterType="Integer">
+        select * from user_detail a , user_login b
+        where a.user_id = b.id
+        and a.id = #{id}
     </select>
 
 

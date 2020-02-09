@@ -180,7 +180,7 @@ public class client {
     }
 
     /**
-     * 嵌套对象
+     * 嵌套对象 2条sql语句
      * @throws IOException
      */
     @Test
@@ -194,6 +194,24 @@ public class client {
         //4、根据反射获取接口的对象
         UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
         UserDetail userDetail = userDetailMapper.selectById(1);
+        System.out.println("info:"+userDetail);
+    }
+
+    /**
+     * 嵌套对象 1条sql语句 无懒加载
+     * @throws IOException
+     */
+    @Test
+    public void userTest004() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserDetailMapper userDetailMapper = sqlSession.getMapper(UserDetailMapper.class);
+        UserDetail userDetail = userDetailMapper.selectByIdOne(2);
         System.out.println("info:"+userDetail);
     }
 
