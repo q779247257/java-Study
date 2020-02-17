@@ -22,4 +22,8 @@ List<User> selectByUserName(String name);
 
 
 List<User> selectByUserNameAndChoose(User user);
+
+//根据名字查询，where标签Demo
+List<User> selectByUserNameWhere(User user);
+
 }

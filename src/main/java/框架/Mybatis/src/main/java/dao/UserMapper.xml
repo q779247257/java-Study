@@ -30,6 +30,15 @@
             </otherwise>
         </choose>
     </select>
+
+    <select id="selectByUserNameWhere" parameterType="user" resultType="user">
+        select * from user
+        <where>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+        </where>
+    </select>
     
 
 </mapper>

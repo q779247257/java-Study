@@ -257,6 +257,7 @@ public class client {
     /**
      * 测试Mybatis动态choose标签
      * choose (when,otherwize) ,相当于java 语言中的 switch ,与 jstl 中的choose 很类似
+     * 只要when中的条件有一个成立，则其他的不成立
      */
     @Test
     public void userTestChoose() throws IOException {
@@ -268,8 +269,8 @@ public class client {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         //4、根据反射获取接口的对象
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-
         User user = new User();
+
         //SQL: SELECT * from user where 1=1 and address= "宁他爹"
         //在所有的when标签不符合之后，最终会执行 otherwise 标签
         List<User> userNull = userMapper.selectByUserNameAndChoose(null);
@@ -288,5 +289,33 @@ public class client {
         List<User> userAddSexAndName = userMapper.selectByUserNameAndChoose(user);
 
         System.out.println("传加入性别和名字的时候返回:"+userAddSexAndName);
+    }
+
+    /**
+     *
+     * 测试Mybatis动态Where标签
+     * where 标签会知道如果它包含的标签中有返回值的话，就会插入一个 where。
+     * 此外，如果标签返回的内容是以AND 或 OR 开头的，则它会剔除掉
+     * @throws IOException
+     */
+    @Test
+    public void userTestWhere() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+//       SQL:  select * from user
+        List<User> userNull = userMapper.selectByUserNameWhere(null);
+        System.out.println("传null的时候返回:"+userNull);
+
+//      SQL: SELECT * from user where 1=1 and name = ?
+        user.setName("邢轩轩");
+        List<User> userAddSexAndName = userMapper.selectByUserNameAndChoose(user);
+        System.out.println("传名字的时候返回:"+userAddSexAndName);
     }
 }
