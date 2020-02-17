@@ -244,10 +244,49 @@ public class client {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         //4、根据反射获取接口的对象
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //SQL: SELECT * from user where 1=1 and name = ?
         List<User> resultNotNull = userMapper.selectByUserName("贝哥");
         System.out.println("传参的时候返回:"+resultNotNull);
 
+        //SQL: SELECT * from user where 1=1
         List<User> userNull = userMapper.selectByUserName(null);
         System.out.println("传null的时候返回:"+userNull);
+    }
+
+    /**
+     * 测试Mybatis动态choose标签
+     * choose (when,otherwize) ,相当于java 语言中的 switch ,与 jstl 中的choose 很类似
+     */
+    @Test
+    public void userTestChoose() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = new User();
+        //SQL: SELECT * from user where 1=1 and address= "宁他爹"
+        //在所有的when标签不符合之后，最终会执行 otherwise 标签
+        List<User> userNull = userMapper.selectByUserNameAndChoose(null);
+        System.out.println("传null的时候返回:"+userNull);
+
+        user.setSex("男");
+        //SQL: SELECT * from user where 1=1 and sex = ?
+        List<User> userAddSex = userMapper.selectByUserNameAndChoose(user);
+        System.out.println("传加入性别的的时候返回:"+userAddSex);
+
+        user.setName("邢轩轩");
+        //如果不设置为null则不执行sql语句 直接返回和userAddSex一样的内容
+        //所以，在 Mybtis中 对于 Choose 标签是 只走一个when的 相当于java中的switch 选择标签
+        user.setSex(null);
+        //SQL: SELECT * from user where 1=1 and name = ?
+        List<User> userAddSexAndName = userMapper.selectByUserNameAndChoose(user);
+
+        System.out.println("传加入性别和名字的时候返回:"+userAddSexAndName);
     }
 }

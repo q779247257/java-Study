@@ -19,4 +19,7 @@ List<User> selectByMap(Map<String,Object> map);
 
 //根据名字查询User
 List<User> selectByUserName(String name);
+
+
+List<User> selectByUserNameAndChoose(User user);
 }

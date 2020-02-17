@@ -6,7 +6,7 @@
 
     <settings>
         <!--  启用延迟加载特性，不配置默认关闭该特性  ;-->
-        <setting name="lazyLoadingEnabled" value="true"></setting>
+        <setting name="lazyLoadingEnabled" value="false"></setting>
         <!--   按需加载: false:使用关联属性，及时加载,不引用则不加载;
                 true,加载对象，则加载所有属性 ;-->
         <setting name="aggressiveLazyLoading" value="false"/>
