@@ -2,14 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 
-<mapper namespace="userTest">
+<mapper namespace="dao.UserMapper">
     <!--根据id查询User
         id:唯一id
         parameterType:传入的参数类型
         resultType：查询以后返回的类型，这里使用的是别名，在mybatis的配置文件中有配置
     -->
-    <select id="selectByid" parameterType="java.lang.Integer" resultType="user">
-       SELECT * from user where id = #{id}
+    <select id="selectByUserName" parameterType="java.lang.String" resultType="user">
+       SELECT * from user where 1=1
+       <if test="name != null">
+           and name = #{name}
+       </if>
     </select>
     
 

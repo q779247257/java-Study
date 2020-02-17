@@ -34,9 +34,8 @@
     </environments>
 
     <!--指定mapper文件,这里可以指定多个mapper映射文件-->
-    <mappers >
+    <mappers>
         <!--<mapper resource="User.xml"></mapper>-->
-        <!--<mapper resource="UserMapper.xml"></mapper>-->
         <package name="dao"></package>
     </mappers>
 

@@ -233,4 +233,21 @@ public class client {
         System.out.println("info:"+userDetail.getOrdersList());
     }
 
+    //测试Myabtis动态If标签
+    @Test
+    public void userTestIf001() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<User> resultNotNull = userMapper.selectByUserName("贝哥");
+        System.out.println("传参的时候返回:"+resultNotNull);
+
+        List<User> userNull = userMapper.selectByUserName(null);
+        System.out.println("传null的时候返回:"+userNull);
+    }
 }
