@@ -18,9 +18,6 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
      * @param msg 字节缓冲
      * @throws Exception
      */
-
-
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //Netty实现的缓冲区

@@ -27,13 +27,18 @@ public class BusiHandler extends ChannelInboundHandlerAdapter {
      */
     private void send (String content, ChannelHandlerContext ctx , HttpResponseStatus status){
         FullHttpResponse response =
-                new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,status,
+                new DefaultFullHttpResponse(
+                        HttpVersion.HTTP_1_1,//设置1.1版本
+                        status,//设置状态
                 Unpooled.copiedBuffer(content, CharsetUtil.UTF_8));
 
         //设置请求头
         response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain;charset=UTF-8");
 
-        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+        //推送给客户端
+        ctx.writeAndFlush(response).
+                //推送完之后就关闭连接，因为我们不需要长连接
+                addListener(ChannelFutureListener.CLOSE);
     }
 
     /**
@@ -61,7 +66,7 @@ public class BusiHandler extends ChannelInboundHandlerAdapter {
             //todo 如果是GET 请求
             if (HttpMethod.GET.equals(method)){
                 System.out.println("body:"+body);
-                result = "Get请求接受，回应:                           这是我回应";
+                result = "Get请求接受，回应:        这是我回应";
                 send(result,ctx,HttpResponseStatus.OK);
 
             }
@@ -88,6 +93,7 @@ public class BusiHandler extends ChannelInboundHandlerAdapter {
         }catch (Exception e){
             System.out.println("请求处理失败");
         }finally {
+            //请求释放
             httpRequest.release();
         }
     }
