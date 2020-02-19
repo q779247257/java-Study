@@ -26,4 +26,5 @@ List<User> selectByUserNameAndChoose(User user);
 //根据名字查询，where标签Demo
 List<User> selectByUserNameWhere(User user);
 
+void updateUserNameAndSxUseSet(User user);
 }

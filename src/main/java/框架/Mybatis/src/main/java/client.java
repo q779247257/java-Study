@@ -335,6 +335,23 @@ public class client {
         //4、根据反射获取接口的对象
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
+        User user = new User();
+        user.setId(1);
+        user.setSex("男");
+//        SQL: UPDATE user SET sex = ? where id = ?
+        userMapper.updateUserNameAndSxUseSet(user);
+        List<User> user1 = userMapper.selectByUserName("贝哥");
+        System.out.println("修改第一次的信息为:"+user1);
+
+
+        user.setSex("女");
+        user.setName("吕俊风");
+//        SQL： UPDATE user SET name = ?, sex = ? where id = ?
+        userMapper.updateUserNameAndSxUseSet(user);
+        System.out.println("修改第2次的信息为:"+userMapper.selectByUserName("吕俊风"));
+
+        sqlSession.commit();//提交数据库事务
+
     }
 
 }

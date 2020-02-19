@@ -41,7 +41,16 @@
     </select>
 
     <update id="updateUserNameAndSxUseSet" parameterType="user">
-        UPDATE
+        UPDATE user
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex}
+            </if>
+        </set>
+        where id = #{id}
     </update>
 
 </mapper>
