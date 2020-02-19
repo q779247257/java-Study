@@ -39,6 +39,9 @@
             </if>
         </where>
     </select>
-    
+
+    <update id="updateUserNameAndSxUseSet" parameterType="user">
+        UPDATE
+    </update>
 
 </mapper>

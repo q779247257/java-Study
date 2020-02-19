@@ -10,7 +10,8 @@ import io.netty.util.ReferenceCountUtil;
  */
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
     /**
-     * 覆盖事件处理的方法，每当从客户端接收到新数据时，都会调用此方法
+     * 覆盖事件处理的方法，每当从客户端接收到新数据时，都会调用此方法*
+     *
      * @param ctx
      * @param msg
      */
@@ -23,7 +24,7 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
  *         /
  */
         try {
-            System.out.println("从telent接受到的内容为：" + "\n"+"");
+            System.out.println("从telent接受到的内容为：" + "\n" + "");
             while (in.isReadable()) {
                 System.out.print((char) in.readByte());
                 System.out.flush();
@@ -32,8 +33,10 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
             ReferenceCountUtil.release(msg);
         }
     }
+
     /**
      * 处理事件引发的异常，大多数情况下，应该记录捕获的异常并在此关闭其关联的同道
+     *
      * @param ctx
      * @param cause
      */
@@ -42,10 +45,11 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
-//    Netty ByteBuf 转 String字符串
+
+    //    Netty ByteBuf 转 String字符串
     public String convertByteBufToString(ByteBuf buf) {
         String str;
-        if(buf.hasArray()) { // 处理堆缓冲区
+        if (buf.hasArray()) { // 处理堆缓冲区
             str = new String(buf.array(), buf.arrayOffset() + buf.readerIndex(), buf.readableBytes());
         } else { // 处理直接缓冲区以及复合缓冲区
             byte[] bytes = new byte[buf.readableBytes()];

@@ -23,7 +23,7 @@ public class HttoServer {
     public static void main(String[] args) throws Exception {
         final SslContext sslCtx;//增加SSL支持是为了支持HTTPS请求
         if (SSL){
-            //Ne
+            //Netty为我们提供的SLL加密，缺省
             SelfSignedCertificate ssc = new SelfSignedCertificate();
             sslCtx = SslContextBuilder.forServer(
                     ssc.certificate(),

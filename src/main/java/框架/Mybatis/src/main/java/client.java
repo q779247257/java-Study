@@ -318,4 +318,23 @@ public class client {
         List<User> userAddSexAndName = userMapper.selectByUserNameAndChoose(user);
         System.out.println("传名字的时候返回:"+userAddSexAndName);
     }
+
+    /**
+     * set标签元素主要是用在更新操作的时候，它的主要功能和 where 标签元素其实是差不多的，
+     * 主要是在包含的语句前输出一个 set ， 然后如果包含的语句是以逗号结束的话，将会把该逗号忽略，
+     * 如果 set 包含的内容为空的话则会报错，有了 setu元素可以动态的更新那些修改了的字段
+     */
+    @Test
+    public void userTestSet() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+    }
+
 }
