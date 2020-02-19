@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-//自动生成set get to string
 public class User {
     private int id;//数据库主键
     private String name;//名字

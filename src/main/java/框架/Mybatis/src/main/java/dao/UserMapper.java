@@ -27,4 +27,6 @@ List<User> selectByUserNameAndChoose(User user);
 List<User> selectByUserNameWhere(User user);
 
 void updateUserNameAndSxUseSet(User user);
+
+List<User> selectByUserNameUseTrim(User user);
 }

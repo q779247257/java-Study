@@ -354,4 +354,33 @@ public class client {
 
     }
 
+
+    /**
+     * trim 元素的主要功能是可以在自己包含的内容前加上某些前缀，
+     * 也可以在其后加上某些后缀，与之对应的属性是 prefix 和 suffix；
+     * 可以把包含内容的首部某些内容覆盖，即忽略，也可以把尾部的某些内容覆盖，
+     * 对应的属性是 prefixOverrides 和 suffixOverrides；正因为 trim 有这样的功能，
+     * 所以我们也可以非常简单的利用 trim 来代替 where 元素的功能。
+     * @throws IOException
+     */
+    @Test
+    public void userTestTrim() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = new User();
+        user.setId(1);
+        user.setName("吕俊风");
+//        SQL: SELECT * from user where 1=1 and name = ?
+        List<User> users = userMapper.selectByUserNameUseTrim(user);
+        System.out.println("info:"+users);
+
+    }
+
 }

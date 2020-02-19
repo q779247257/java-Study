@@ -53,4 +53,18 @@
         where id = #{id}
     </update>
 
+    <!-- prefix：前缀的
+        suffixOverrides： 忽略的后缀
+        prefixOverrides： 忽略的前缀
+    -->
+    <select id="selectByUserNameUseTrim" parameterType="user" resultType="user">
+      select * from user
+      <trim prefix="where" suffixOverrides="and|or" prefixOverrides="and|or" >
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        and id = #{id}
+      </trim>
+    </select>
+
 </mapper>
