@@ -3,14 +3,16 @@ package 基础.序列化;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 
+import static javax.crypto.SecretKey.serialVersionUID;
+
 /**
  * @Author: 轩轩
  * @Date: 2020/2/19 10:52
  * @description:
  */
 public class UserInfo implements Serializable {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = -1102660655096769935L;
     private String name;
     private int userId;
 

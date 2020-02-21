@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -380,6 +381,49 @@ public class client {
 //        SQL: SELECT * from user where 1=1 and name = ?
         List<User> users = userMapper.selectByUserNameUseTrim(user);
         System.out.println("info:"+users);
+
+    }
+
+    /**
+     * foreachb标签用例
+     * item表示集合中每一个元素进行迭代时的别名
+     * index 指定一个名字，用于表示在迭代过程中，每次迭代到的位置
+     * open ： 表示该语句以什么开始
+     * separator ： 表示在每次进行迭代之间以什么符号作为分隔符
+     * close ： 表示以什么结束
+     * collection： 属性（list array map）
+     * @throws IOException
+     */
+    @Test
+    public void userTestForeach() throws IOException {
+        //1、加载myabtis配置文件 读取myabtis配置文件
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        //2、使用sqlSessionFactoryBuild来创建一个sqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        //3、获取到sql session  进行调取api
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //4、根据反射获取接口的对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+//        todo foreachb标签用例(List)
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(10);
+        integers.add(11);
+        List<User> users = userMapper.selectUserByForeachUseList(integers);
+        System.out.println("info:"+users);
+
+//        todo foreachb标签用例(Array数组)
+        int[] array ={1,10,11};
+        List<User> usersArray = userMapper.selectUserByForeachUseArray(array);
+        System.out.println("array:"+usersArray);
+
+//        todo foreachb标签用例(Map),
+//        如果为Map类型，则在Mybatis的映射的xml文件中  foreach 标签中的 collection 为map的key
+        HashMap<String, List<Integer>> idsMap = new HashMap<>();
+        idsMap.put("ids",integers);
+        List<User> usersMap = userMapper.selectUserByForeachUseMap(idsMap);
+        System.out.println("usersMap:"+usersArray);
+
 
     }
 

@@ -29,4 +29,11 @@ List<User> selectByUserNameWhere(User user);
 void updateUserNameAndSxUseSet(User user);
 
 List<User> selectByUserNameUseTrim(User user);
+
+List<User> selectUserByForeachUseList(List<Integer> list);
+
+List<User> selectUserByForeachUseArray(int[] array);
+
+
+List<User> selectUserByForeachUseMap(Map<String,List<Integer>> map);
 }

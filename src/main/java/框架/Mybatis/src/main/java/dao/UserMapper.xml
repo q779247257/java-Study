@@ -53,17 +53,40 @@
         where id = #{id}
     </update>
 
-    <!-- prefix：前缀的
+    <!--
+        suffix: 后缀的
+        prefix：前缀的
         suffixOverrides： 忽略的后缀
         prefixOverrides： 忽略的前缀
     -->
-    <select id="selectByUserNameUseTrim" parameterType="user" resultType="user">
+    <select id="selectByUserNameUseTrim"  parameterType="user" resultType="user">
       select * from user
-      <trim prefix="where" suffixOverrides="and|or" prefixOverrides="and|or" >
+      <trim prefix="where"  suffixOverrides="and|or" prefixOverrides="and|or" >
         <if test="name != null">
             and name = #{name}
         </if>
       </trim>
+    </select>
+
+    <select id="selectUserByForeachUseList" parameterType="list" resultType="user">
+        SELECT *  FROM user where id in 
+        <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectUserByForeachUseArray" parameterType="list" resultType="user">
+        SELECT *  FROM user where id in
+        <foreach collection="array" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectUserByForeachUseMap" parameterType="map" resultType="user">
+        SELECT *  FROM user where id in
+        <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 
 </mapper>
