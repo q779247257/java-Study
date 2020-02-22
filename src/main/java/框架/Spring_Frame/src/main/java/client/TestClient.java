@@ -64,7 +64,25 @@ public class TestClient {
     public void getPojoByStaticFactoryTest(){
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
-        User factoryName = applicationContext.getBean("factoryId", User.class);
+        User factoryName = applicationContext.getBean("staticFactoryId", User.class);
+
+    }
+
+    /**
+     * 非静态工厂类获取Bean对象实例
+     * 输出结果：
+            对象被引用了
+            对象初始化的方法2020-2-22 15:33:18
+            静态工厂被引用了
+            对象被引用了
+            非静态工厂被引用了
+            对象被引用了
+     */
+    @Test
+    public void getPojoByUnStaticFactoryTest(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
+        User factoryName = applicationContext.getBean("unStaticFactoryId", User.class);
 
     }
 }

@@ -19,7 +19,23 @@
 
     <!--
         静态工厂类获取对象Bean
+        factory-method： 获取对象的方法
     -->
-    <bean id="factoryId" name="factoryName" class="Factory.StaticFactory" factory-method="getStaticFactory" />
+    <bean id="staticFactoryId" name="staticFactoryName" class="Factory.StaticFactory" factory-method="getStaticFactory" />
 
+
+    <!--
+        非静态工厂类获取对象Bean
+        非静态工厂需要配置2个Bean
+        factory-method： 获取对象的方法
+
+        第一个bean（unStaticFactoryBaseId）：
+                      将非静态工厂注入到Spring的容器中
+
+        第二个bean（unStaticFactoryId）：
+                  调用（引用）第一个非静态工厂类
+                  factory-bean： 配置的静态工厂的类的BeanId
+    -->
+    <bean id="unStaticFactoryBaseId" name="unStaticFactoryName" class="Factory.UnStaticFactory" />
+    <bean id="unStaticFactoryId" factory-bean="unStaticFactoryBaseId" factory-method="getFactoryUser" />
 </beans>
