@@ -1,6 +1,7 @@
 package client;
 
 import domain.User;
+import domain.UserDetail;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -126,6 +127,30 @@ public class TestClient {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
         User user = applicationContext.getBean("userAndUserLoginId", User.class);
+        System.out.println("user = " + user);
+    }
+
+    /**
+     * Sprinbg 注入复杂类型 示例
+     *      List： <list><list/>标签
+     *      int[]： <array></array>标签
+     *      Map： <map> map标签
+     *      Set: <set>庙前
+     *      Properties
+     *
+     *  打印结果：
+     *  user =  UserDetail{myList=[1, 2, 3],
+     *          myArray=[1, 2, 3],
+     *          myMap={name=轩轩,
+     *          age=年龄, sex=男},
+     *          mySet=[1, 2, 3],
+     *          myPro={age=18, name=轩轩}}
+     */
+    @Test
+    public void getPojoComplexType(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
+        UserDetail user = applicationContext.getBean("userDetailId", UserDetail.class);
         System.out.println("user = " + user);
     }
 }

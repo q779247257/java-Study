@@ -72,5 +72,55 @@
         <property name="userLogin" ref="userLoginId"/>
     </bean>
 
+    <!--
+        复杂类型注入
+       name="myList": myList:list类型注入
+    -->
+    <bean id="userDetailId" name="userDetailName" class="domain.UserDetail">
+        <!--List类型注入-->
+        <property name="myList">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+
+        <!--数组类型注入-->
+        <property name="myArray">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </array>
+        </property>
+
+        <!--Map类型注入-->
+        <property name="myMap">
+            <map>
+               <entry key="name" value="轩轩"></entry>
+               <entry key="age" value="年龄"></entry>
+               <entry key="sex" value="男"></entry>
+            </map>
+        </property>
+
+        <!--Set类型注入-->
+        <property name="mySet">
+            <set>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </set>
+        </property>
+
+        <!-- properties赋值 -->
+        <property name="myPro">
+            <props>
+                <prop key="name">轩轩</prop>
+                <prop key="age">18</prop>
+            </props>
+        </property>
+    </bean>
+
 
 </beans>
