@@ -50,8 +50,15 @@ public class AnnoationTest {
 //    测试注解查询
     @Test
     public void TestFindAll(){
-        List<User> all = userAnnoationMapper.findAlls();
+        List<User> all = userAnnoationMapper.findById(1);
         System.out.println("info:"+all);
+    }
+
+    @Test
+    public void TestFindByName(){
+        List<User> result = userAnnoationMapper.findByName("吕俊风");
+        System.out.println("info:"+result);
+
     }
 
     @After

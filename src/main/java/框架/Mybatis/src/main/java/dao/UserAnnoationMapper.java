@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserAnnoationMapper {
     @Results(id ="xuanxuan" ,
             value = {
-            @Result(id=true,column = "id",property = "id"),
+            @Result(id=true,column = "id",property = "id" ),
             @Result(column = "name",property = "name"),
             @Result(column = "sex",property = "sex"),
             @Result(column = "address",property = "address"),
@@ -22,7 +22,11 @@ public interface UserAnnoationMapper {
     @Select("select * from user")
     List<User> findAll();
 
-    @Select("select * from user")
+    @Select("select * from user where id = #{id}")
     @ResultMap("xuanxuan")
-    List<User> findAlls();
+    List<User> findById(Integer id);
+
+    @Select("select * from user where name = #{name}")
+    @ResultMap("xuanxuan")
+    List<User> findByName(String name);
 }
