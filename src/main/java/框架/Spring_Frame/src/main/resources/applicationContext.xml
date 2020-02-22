@@ -6,9 +6,20 @@
     <!--
           id 和 name 可以同时存在,作为bean的标识
           class添加的应该是class的全路径
+          scope：创建的对象是否为单例 prototype 是非单例 singleton 是单例(默认)
+          init-method： 对象初始化方法
+          destroy-method： 对象销毁方法
+          lazy-init: 是否延迟加载 默认值为false
       -->
     <bean
-            id="user" name="userName" class="domain.User"
+            id="user" name="userName" class="domain.User" scope="singleton"
+            init-method="intMethod"
+            destroy-method="destroyMethod"
     />
+
+    <!--
+        静态工厂类获取对象Bean
+    -->
+    <bean id="factoryId" name="factoryName" class="Factory.StaticFactory" factory-method="getStaticFactory" />
 
 </beans>
