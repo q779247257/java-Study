@@ -83,6 +83,19 @@ public class TestClient {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
         User factoryName = applicationContext.getBean("unStaticFactoryId", User.class);
+    }
+
+    /**
+     * 通过有参构造注入创建对象实例
+     * 打印结果：
+     *      user = User{name='轩轩', age='18', sex='男'}
+     */
+    @Test
+    public void getPojoByParamConstructor(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
+        User user = applicationContext.getBean("userConstructorId", User.class);
+        System.out.println("user = " + user);
 
     }
 }

@@ -23,7 +23,6 @@
     -->
     <bean id="staticFactoryId" name="staticFactoryName" class="Factory.StaticFactory" factory-method="getStaticFactory" />
 
-
     <!--
         非静态工厂类获取对象Bean
         非静态工厂需要配置2个Bean
@@ -38,4 +37,13 @@
     -->
     <bean id="unStaticFactoryBaseId" name="unStaticFactoryName" class="Factory.UnStaticFactory" />
     <bean id="unStaticFactoryId" factory-bean="unStaticFactoryBaseId" factory-method="getFactoryUser" />
+
+    <!--
+        通过有参构造获取对象
+    -->
+    <bean id="userConstructorId" name="userConstructorName" class="domain.User">
+        <constructor-arg name="age" value="18"/>
+        <constructor-arg name="sex" value="男"/>
+        <constructor-arg name="name" value="轩轩"/>
+    </bean>
 </beans>

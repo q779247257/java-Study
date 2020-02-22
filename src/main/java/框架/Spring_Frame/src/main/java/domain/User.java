@@ -11,6 +11,13 @@ public class User {
     private String name;//名字
     private String age;//年龄
     private String sex;//性别
+
+    public User(String name, String age, String sex) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+
     public User(){
         System.out.println("对象被引用了");
     }
