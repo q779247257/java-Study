@@ -3,9 +3,8 @@ package client;
 import domain.User;
 import domain.UserDetail;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * @Author: 轩轩
@@ -151,6 +150,17 @@ public class TestClient {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
         UserDetail user = applicationContext.getBean("userDetailId", UserDetail.class);
+        System.out.println("user = " + user);
+    }
+
+    /**
+     * 绝对路径 开启Spring工厂
+     */
+    @Test
+    public void testFilePath(){
+//        通过绝对路径加载配置文件
+        FileSystemXmlApplicationContext fileSystemXmlApplicationContext = new FileSystemXmlApplicationContext("D:\\Java\\IdeaProjects\\java-Study\\src\\main\\java\\框架\\Spring_Frame\\src\\main\\resources\\applicationContext.xml");
+        User user = fileSystemXmlApplicationContext.getBean("user", User.class);
         System.out.println("user = " + user);
     }
 }
