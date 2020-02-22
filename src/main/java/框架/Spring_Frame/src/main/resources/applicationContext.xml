@@ -46,4 +46,14 @@
         <constructor-arg name="sex" value="男"/>
         <constructor-arg name="name" value="轩轩"/>
     </bean>
+
+    <!--
+        通过set方法注入对象的属性值
+    -->
+    <bean id="userSetId" name="userSetName" class="domain.User">
+        <property name="sex" value="男"/>
+        <property name="name" value="轩轩"/>
+        <property name="age" value="18"/>
+    </bean>
+
 </beans>
