@@ -100,6 +100,7 @@ public class TestClient {
     }
     /**
      * set方法注入对象的属性值
+     * 普通属性直接只用value注入即可
      * 打印结果：
      *          user = User{name='轩轩', age='18', sex='男'}
      */
@@ -109,6 +110,22 @@ public class TestClient {
         //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
         User user = applicationContext.getBean("userSetId", User.class);
         System.out.println("user = " + user);
+    }
 
+    /**
+     * set方法注入引用类型的属性值 使用ref 引用
+     * 打印结果：
+     *          user = User {
+     * 	            name = '轩轩', age = '18', sex = '男', userLogin = UserLogin {
+     * 		            userLogin = '我的账户', userPassword = '我的密码'
+     *        }
+     * }
+     */
+    @Test
+    public void getPojoUserAndLogin(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
+        User user = applicationContext.getBean("userAndUserLoginId", User.class);
+        System.out.println("user = " + user);
     }
 }

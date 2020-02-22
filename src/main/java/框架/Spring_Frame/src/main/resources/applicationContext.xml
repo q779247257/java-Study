@@ -56,4 +56,21 @@
         <property name="age" value="18"/>
     </bean>
 
+    <!--
+        通过set方法注入引用类型的属性
+        第一个Bean（userLoginId）：首先要将要注入的对象属性注入到Spring容器中
+        第二个Bean（userAndUserLoginId）： 使用 ref 属性来引用要注入的Bean的id
+    -->
+    <bean id="userLoginId" name="userLoginName" class="domain.UserLogin">
+        <property name="userLogin" value="我的账户" />
+        <property name="userPassword" value="我的密码" />
+    </bean>
+    <bean id="userAndUserLoginId" name="userAndUserLoginName" class="domain.User">
+        <property name="sex" value="男"/>
+        <property name="name" value="轩轩"/>
+        <property name="age" value="18"/>
+        <property name="userLogin" ref="userLoginId"/>
+    </bean>
+
+
 </beans>

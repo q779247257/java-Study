@@ -11,6 +11,8 @@ public class User {
     private String name;//名字
     private String age;//年龄
     private String sex;//性别
+    private UserLogin userLogin;//
+
 
     public User(String name, String age, String sex) {
         this.name = name;
@@ -45,6 +47,14 @@ public class User {
         this.age = age;
     }
 
+    public UserLogin getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(UserLogin userLogin) {
+        this.userLogin = userLogin;
+    }
+
     public void intMethod(){
         System.out.println("对象初始化的方法"+ new Date().toLocaleString());
     }
@@ -52,12 +62,14 @@ public class User {
         System.out.println("对象被销毁了");
     }
 
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", age='" + age + '\'' +
                 ", sex='" + sex + '\'' +
+                ", userLogin=" + userLogin +
                 '}';
     }
 }
