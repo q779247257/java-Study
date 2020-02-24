@@ -13,14 +13,13 @@ import org.springframework.stereotype.Component;
  */
 @Component("userServiceImpl")
 public class AnnotationUserServiceImpl {
-//    @Resource(name = "userDao")
 
     @Autowired//根据类型自动注入
-//    @Qualifier("userDao")//指定名称
-    private AnnotationUserDaoImpl userDao;
+    private AnnotationUserDaoImpl annotationUserDao;
 
     public void  saveUser(){
-        userDao.saveUser();
+        System.out.println("userServiceImpl被调用");
+        annotationUserDao.saveUser();
     }
 
 
