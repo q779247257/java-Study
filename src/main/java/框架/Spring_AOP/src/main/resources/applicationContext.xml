@@ -22,12 +22,16 @@
     <aop:config>
         <aop:aspect id="myAop" ref="myAdvice">
             <!--
-                after： 前置通知
+                before： 前置通知
+                after-returning： 后置通知
+                after-throwing： 异常通知
                 method： 指定切面类的方法
                 prointcut: 用于指定切入点表达式，该表达式的含义指的是对业务层中哪些方法增强
             -->
             <aop:before method="before" pointcut="execution(public void com.xuanxuan.service.UserLogin.*(..)) " ></aop:before>
-            <aop:after method="after" pointcut="execution(public void com.xuanxuan.service.UserLogin.*(..)) " ></aop:after>
+            <aop:after-returning method="after" pointcut="execution(public void com.xuanxuan.service.UserLogin.*(..)) " ></aop:after-returning>
+            <aop:after-throwing method="throwing" pointcut="execution(public void com.xuanxuan.service.UserLogin.*(..)) " ></aop:after-throwing>
+            <aop:after method="afterEnd" pointcut="execution(public void com.xuanxuan.service.UserLogin.*(..)) " ></aop:after>
         </aop:aspect>
     </aop:config>
 </beans>

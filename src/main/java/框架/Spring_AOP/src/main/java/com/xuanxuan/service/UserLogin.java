@@ -16,4 +16,8 @@ public class UserLogin {
     public void uerrOutLogin(){
         System.out.println("用户退出了");
     }
+    public void thorwError(){
+        int e = 1/0;
+        System.out.println("异常通知测试");
+    }
 }

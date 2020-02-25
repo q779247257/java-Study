@@ -17,4 +17,13 @@ public class MyAdvice {
         System.out.println("这是一个后置通知");
     }
 
+    //异常通知
+    public void throwing(){
+        System.out.println("这是异常通知");
+    }
+
+    public void afterEnd(){
+        System.out.println("这是最终通知");
+    }
+
 }

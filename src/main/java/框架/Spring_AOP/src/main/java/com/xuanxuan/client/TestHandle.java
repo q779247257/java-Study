@@ -20,9 +20,15 @@ public class TestHandle {
     @Autowired
     private UserLogin uerLogin;
 
-//    测试前置方法
+//    测试前置和后置通知
     @Test
     public void Test001(){
         uerLogin.userLogin();
+    }
+
+//    异常通知 和 最终稿通知 示例示例
+    @Test
+    public void Test002(){
+        uerLogin.thorwError();
     }
 }
