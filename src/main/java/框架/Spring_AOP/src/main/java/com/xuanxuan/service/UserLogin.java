@@ -17,7 +17,11 @@ public class UserLogin {
         System.out.println("用户退出了");
     }
     public void thorwError(){
-        int e = 1/0;
         System.out.println("异常通知测试");
+    }
+
+    public void around(){
+        System.out.println("环绕通知测试");
+        int e = 1/0;
     }
 }

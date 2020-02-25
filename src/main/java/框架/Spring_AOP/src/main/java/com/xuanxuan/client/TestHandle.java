@@ -26,9 +26,15 @@ public class TestHandle {
         uerLogin.userLogin();
     }
 
-//    异常通知 和 最终稿通知 示例示例
+//    异常通知 和 最终通知 示例示例
     @Test
     public void Test002(){
         uerLogin.thorwError();
+    }
+
+//    环绕通知 示例
+    @Test
+    public void Test003(){
+        uerLogin.around();
     }
 }
