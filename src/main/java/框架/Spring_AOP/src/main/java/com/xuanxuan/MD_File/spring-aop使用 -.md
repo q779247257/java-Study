@@ -1,45 +1,4 @@
-# Spring-IOC使用
-
-## 1.需要将使用到的类交给spring来管理
-
-### 1.xml配置的方式
-
-```
-<bean id ="" class=""> </bean>
-```
-
-### 2.注解的方式
-
-```
-1.@Component
-2.@Service
-3.@Controller
-4.@Repository
-```
-
-## 2.各类之间的调用（注入）
-
-### 1.可以使用xml配置得方式
-
-```
-<bean id ="" class="">
-<property name="" ref=""> <!--将ref中的类注入到该类中 -->
-</bean>
-```
-
-### 在哪里使用ref中的类，必须在哪里定义该类的成员变量，并且给set方法
-
-## 2.使用注解的方式
-
-```
-1.@Resource(name="")
-2.@Autowired
-3.@Qualifier
-```
-
 # Spring-AOP的使用（xml配置）
-
-
 
 ## 1.导入对应的AOP jar 包，需注意spring JAR版本需相同
 
@@ -49,7 +8,7 @@
             <artifactId>spring-aop</artifactId>
             <version>5.0.2.RELEASE</version>
         </dependency>
-        
+ 
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
