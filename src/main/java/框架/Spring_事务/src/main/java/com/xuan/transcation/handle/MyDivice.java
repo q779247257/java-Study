@@ -22,10 +22,9 @@ public class MyDivice {
     //JDBC事务管理器
     @Autowired private DataSourceTransactionManager transactional;
 
-    @Pointcut("execution(* com.xuan.transcation.service.*.* (..))")
-    public void ptl(){
+    @Pointcut("execution(* com.xuan.transcation.service.AccountServiceImpl.* (..))")
+    public void ptl(){ }
 
-    }
     @Around("ptl()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         DefaultTransactionDefinition def = new DefaultTransactionDefinition();

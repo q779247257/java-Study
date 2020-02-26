@@ -4,6 +4,7 @@ import com.xuan.transcation.service.AccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,12 +17,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:applicationContext.xml")
 public class ClientSpringTest {
 
-    @Autowired
+    @Autowired//（AOP实现事务回滚）
+    @Qualifier("accountServiceImpl")
     private AccountService accountService;
 
-    @Test
-    public void  Test001(){
-        accountService.TransferAccountNotError(2,3,1000D);
-//        accountService.TransferAccount(2,3,1000D);
+
+    @Autowired//XML 实现事务回滚
+    @Qualifier("accountServiceAoontaionImpl")
+    private AccountService accountServiceAoon;
+
+    @Test//（AOP实现事务回滚）
+    public void  Test001() {
+        accountService.TransferAccount(2, 3, 1000D);
+    }
+
+    @Test//XML 实现事务回滚
+    public void  Test002() {
+        accountServiceAoon.TransferAccount(2, 3, 1000D);
     }
 }

@@ -3,6 +3,7 @@ package com.xuan.transcation.service;
 import com.xuan.transcation.dao.AccountDao;
 import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,15 +15,12 @@ import javax.naming.ldap.PagedResultsControl;
  * @Date: 2020/2/26 14:04
  * @description:
  */
-@Service
-@Transactional
+@Service("accountServiceImpl")
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountDao accountDao;
 
-    @Autowired
-    private DataSourceTransactionManager manager;
 
     /**
      * 转账 测试异常和事务
