@@ -23,7 +23,11 @@ public class ClientSpringTest {
 
 
     @Autowired//XML 实现事务回滚
-    @Qualifier("accountServiceAoontaionImpl")
+    @Qualifier("accountServiceXMLImpl")
+    private AccountService accountServiceXML;
+
+    @Autowired//XML 实现事务回滚
+    @Qualifier("accountServiceXMLImpl")
     private AccountService accountServiceAoon;
 
     @Test//（AOP实现事务回滚）
@@ -33,6 +37,12 @@ public class ClientSpringTest {
 
     @Test//XML 实现事务回滚
     public void  Test002() {
+        accountServiceXML.TransferAccount(2, 3, 1000D);
+    }
+
+    @Test//Spring 注解实现事务回滚
+    public void  Test003() {
         accountServiceAoon.TransferAccount(2, 3, 1000D);
+//        accountServiceAoon.TransferAccountNotError(2, 3, 1000D);
     }
 }

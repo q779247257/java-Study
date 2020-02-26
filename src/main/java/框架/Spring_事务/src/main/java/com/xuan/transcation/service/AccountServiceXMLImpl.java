@@ -12,8 +12,8 @@ import org.springframework.transaction.support.TransactionTemplate;
  * @Date: 2020/2/26 15:25
  * @description:
  */
-@Service("accountServiceAoontaionImpl")
-public class AccountServiceAoontaionImpl implements AccountService  {
+@Service("accountServiceXMLImpl")
+public class AccountServiceXMLImpl implements AccountService  {
 
     @Autowired
     private AccountDao accountDao;

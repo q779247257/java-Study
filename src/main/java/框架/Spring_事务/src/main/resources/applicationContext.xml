@@ -16,6 +16,8 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
     <context:component-scan base-package="com.xuan.transcation"></context:component-scan>
     <!--开启 SPring AOP 的注解模式-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <!--配置注解事务开启 对标注@Transactional注解的Bean进行加工处理,以织入事物管理切面 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!--连接数据库的必备信息-->
@@ -49,7 +51,7 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
             <tx:method name="create*" propagation="REQUIRED" />
             <tx:method name="delete*" propagation="REQUIRED" />
             <tx:method name="update*" propagation="REQUIRED" />
-            <tx:method name="Transfer*" propagation="REQUIRED" />
+            <tx:method name="Tansfer*" propagation="REQUIRED" />
             <!-- SUPPORTS：如果有事务，则在事务中执行；如果没有事务，则不会开启事物
                 read-only: 只读
             -->
