@@ -17,8 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:applicationContext.xml")
 public class ClientSpringTest {
 
-    @Autowired//（AOP实现事务回滚）
-    @Qualifier("accountServiceImpl")
+    @Autowired
+    @Qualifier("accountServiceImpl")//（AOP实现事务回滚）
     private AccountService accountService;
 
 

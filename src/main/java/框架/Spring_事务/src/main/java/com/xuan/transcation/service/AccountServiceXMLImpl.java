@@ -15,9 +15,11 @@ import org.springframework.transaction.support.TransactionTemplate;
 @Service("accountServiceXMLImpl")
 public class AccountServiceXMLImpl implements AccountService  {
 
+    @Autowired private AccountDao accountDao;
+
     @Autowired
-    private AccountDao accountDao;
-    @Autowired
+
+
     private TransactionTemplate template;
     /**
      * 转账 测试异常和事务
