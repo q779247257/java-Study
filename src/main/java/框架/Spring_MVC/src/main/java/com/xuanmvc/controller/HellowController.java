@@ -1,6 +1,8 @@
 package com.xuanmvc.controller;
 
+import com.xuanmvc.pojo.UserModel;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -76,7 +78,19 @@ public class HellowController {
         System.out.println("ModelAndView 被触发！");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hellow");//页面的名字
+        modelAndView.addObject("username","蔡徐坤");
+        modelAndView.addObject("xuanxuan","蔡徐坤");
+        ModelMap modelMap = modelAndView.getModelMap();
+
+        System.out.println("xuanxuna:"+modelMap.get("xuanxuan"));
+//        return new ModelAndView("/hellow",modelMap);
+        UserModel um = new UserModel();
+        um.setPhone("110");
+        um.setSex("女");
+        um.setUsername("这是我的名字");
+        modelAndView.addObject("pojo",um);
         return modelAndView;
     }
+
 
 }
