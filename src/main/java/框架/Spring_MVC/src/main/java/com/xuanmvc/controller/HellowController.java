@@ -2,6 +2,7 @@ package com.xuanmvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Author: 轩轩
@@ -68,6 +69,14 @@ public class HellowController {
     public String testForward(){
         System.out.println("内部转发触发");
         return "forward:/hellow/word";
+    }
+    //String MVC ModelAndView
+    @RequestMapping(value = "/model")
+    public ModelAndView testModeAndView(){
+        System.out.println("ModelAndView 被触发！");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hellow");//页面的名字
+        return modelAndView;
     }
 
 }
