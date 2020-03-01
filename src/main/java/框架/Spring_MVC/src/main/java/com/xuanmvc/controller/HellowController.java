@@ -63,4 +63,11 @@ public class HellowController {
         return "redirect:/hellow/word";
     }
 
+    //String MVC 内部转发
+    @RequestMapping(value = "/forward")
+    public String testForward(){
+        System.out.println("内部转发触发");
+        return "forward:/hellow/word";
+    }
+
 }
