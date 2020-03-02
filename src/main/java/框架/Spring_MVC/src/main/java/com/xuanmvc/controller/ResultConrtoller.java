@@ -50,10 +50,10 @@ public class ResultConrtoller {
      * @param request request请求
      * @return 错误页面
      */
-    @ExceptionHandler
-    public String errorHand(RuntimeException re , HttpServletRequest request){
-        re.printStackTrace();
-        System.out.println("错误方法触发");
-        return "error";
-    }
+//    @ExceptionHandler
+//    public String errorHand(RuntimeException re , HttpServletRequest request){
+//        re.printStackTrace();
+//        System.out.println("错误方法触发");
+//        return "error";
+//    }
 }
