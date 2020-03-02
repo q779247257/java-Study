@@ -3,6 +3,8 @@ package com.xuanmvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author: 轩轩
  * @Date: 2020/3/2 14:27
@@ -34,5 +36,24 @@ public class ResultConrtoller {
     public String delete(@PathVariable("id") String id){
         System.out.println("id:"+id);
         return "hellow";
+    }
+
+
+    @RequestMapping("/error")
+    public String  error(){
+        int i=1/0;
+        return"hellow";
+    }
+
+    /**
+     * 类异常处理器 捕获这个类中抛出的异常
+     * @param request request请求
+     * @return 错误页面
+     */
+    @ExceptionHandler
+    public String errorHand(RuntimeException re , HttpServletRequest request){
+        re.printStackTrace();
+        System.out.println("错误方法触发");
+        return "error";
     }
 }
