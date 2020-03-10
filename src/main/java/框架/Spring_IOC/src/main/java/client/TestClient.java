@@ -151,6 +151,7 @@ public class TestClient {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         //getBean 可以使用配置文件中的id值,也可以使用配置文件的name值.
         UserDetail user = applicationContext.getBean("userDetailId", UserDetail.class);
+        UserDetail users = applicationContext.getBean("userDetailId", UserDetail.class);
         System.out.println("user = " + user);
     }
 }

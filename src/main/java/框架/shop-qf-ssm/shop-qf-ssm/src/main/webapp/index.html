@@ -1,0 +1,178 @@
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Loding font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Login</title>
+  </head>
+  <body>
+
+    <!-- Backgrounds -->
+
+    <div id="login-bg" class="container-fluid">
+
+      <div class="bg-img"></div>
+      <div class="bg-color"></div>
+    </div>
+
+    <!-- End Backgrounds -->
+
+    <div class="container" id="login">
+        <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="login">
+            <h1>Login</h1>
+            <!-- Loging form -->
+                  <form method="post" action="/shop_qf_ssm_war/user/login" onsubmit="return checkForm()">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="userName_id" name="username" aria-describedby="emailHelp" placeholder="请输入你的账户">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="passWord_id" name="password"  placeholder="请输入你的密码">
+                    </div>
+
+
+                    <br>
+                    <button type="submit" class="btn btn-lg btn-block btn-success" id="login_in">登录</button>
+                    <!-- 按钮触发模态框 -->
+                    <button type="button" class="btn btn-primary btn-lg btn-block btn-success " data-toggle="modal" data-target="#myModal">注册</button>
+                  </form>
+             <!-- End Loging form -->
+
+          
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!--模态框弹出-->
+    <div class="modal fade" id="myModal" tabindex="-1" rolez="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h4 class="modal-title" id="myModalLabel">
+              模态框（Modal）标题
+            </h4>
+          </div>
+          <form method="post" action="/shop_qf_ssm_war/user/register" enctype="multipart/form-data" onsubmit="return register()">
+          <div class="modal-body">
+            <div class="form-group">
+              <label >注册账户</label>
+              <input type="text" class="form-control" id="register_username_id" name="username" placeholder="请输入您要注册的账户">
+            </div>
+
+            <div class="form-group">
+              <label >注册的密码</label>
+              <input type="text" class="form-control" id="register_password_id" placeholder="请输入注册的密码">
+            </div>
+            <div class="form-group">
+              <label>确认密码</label>
+              <input type="text" class="form-control" id="register_password_id2" name="password" placeholder="请确认您的密码">
+            </div>
+            <div class="form-group">
+              <label >您的邮箱</label>
+              <input type="text" class="form-control" id="register_email_id" name="userEmail" placeholder="请输入您的邮箱">
+            </div>
+            <div class="form-group">
+              <label >您的昵称</label>
+              <input type="text" class="form-control" id="register_user_call_id" name="userCall" placeholder="请起一个您的昵称">
+            </div>
+
+            <div class="form-group">
+              <label for="inputfile">头像上传</label>
+              <input type="file" id="inputfile" name="file">
+              <p class="help-block">这里上传你的头像</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+              </button>
+              <button type="submit" class="btn btn-primary" >
+                注册
+              </button>
+            </div>
+          </div>
+          </form>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal -->
+    </div>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function checkForm(){
+      //得到账户输入框对象
+      var name = document.getElementById("userName_id");
+      //判断输入框是否有内容
+      if(name.value.length==0){
+        confirm("用户名不能为空");
+        return false;
+      }
+      //得到密码框输入对象
+      var pass = document.getElementById("passWord_id");
+      if(pass.value.length==0){
+        confirm("密码不能为空");
+        return false;
+      }
+      return true;
+    }
+    
+    function register() {
+      alert("注册提交事件触发");
+      var username = document.getElementById("register_username_id");
+      if( username.value.length == 0){
+        alert("账户不能为空");
+        return false
+      }
+
+      var password = document.getElementById("register_password_id");
+      //校验密码是否为空
+      if( password.value.length == 0){
+        alert("密码不能为空");
+        return false;
+      }else {
+        var password2 = document.getElementById("register_password_id2");
+        //校验2次密码是否相同
+        if (password.value != password2.value) {
+          alert("两次密码输入不一致");
+          return false;
+        }
+      }
+      //邮箱验证不为空
+      var emmail = document.getElementById("register_email_id");
+      if( emmail.value.length == 0){
+        alert("邮箱不能为空");
+        return false;
+      }
+
+      //验证昵称不为空
+      var usercall = document.getElementById("register_user_call_id");
+      if( usercall.value.length == 0){
+        alert("昵称不能为空");
+        return false;
+      }
+      return true;
+    }
+
+  </script>
+
+  </body>
+</html>

@@ -19,6 +19,10 @@ public class SynchronizedCodeDemo implements Runnable {
             new Thread(synchronizedCodeDemo,"淘票").start();
             new Thread(synchronizedCodeDemo,"猫眼").start();
             new Thread(synchronizedCodeDemo,"美团").start();
+
+            for (int i = 0; i < 1000; i++) {
+                System.out.println("我是主线程,正在执行自己的业务");
+            }
     }
     //抢票方法
     public  boolean getticket(){

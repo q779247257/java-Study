@@ -10,6 +10,12 @@
         <input type="file" name="file" />
         <button>提交</button>
     </form>
+
+    <form method="post" enctype="multipart/form-data" action="/Spring_MVC_war/file/picOSS">
+        <label for="name">文件名称<input type="text" id="name1" name="name"1 /></label>
+        <input type="file" name="file" />
+        <button>阿里云提交</button>
+    </form>
 </center>
 </body>
 </html>

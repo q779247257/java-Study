@@ -1,18 +1,12 @@
-package com.web.socket.websocket.code;
-
-import java.io.IOException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.CopyOnWriteArraySet;
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
+package com.qf.config;
 
 import org.springframework.stereotype.Component;
+
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 
 /**
@@ -42,7 +36,7 @@ public class MyWebSocket {
         System.out.println("接受的session为："+session.hashCode());
         this.session = session;
         webSocketSet.add(this);     //加入set中
-                      addOnlineCount();           //在线数加1
+        addOnlineCount();           //在线数加1
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
         try {
             sendMessage("当前在线人数为" + getOnlineCount());
@@ -68,7 +62,6 @@ public class MyWebSocket {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        System.out.println("session的id为：" + session.getId());
         System.out.println("来自客户端的消息:" + message);
         session.getId();
         //群发消息

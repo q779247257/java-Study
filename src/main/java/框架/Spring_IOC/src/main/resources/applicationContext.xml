@@ -12,7 +12,7 @@
           lazy-init: 是否延迟加载 默认值为false
       -->
     <bean
-            id="user" name="userName" class="domain.User" scope="singleton"
+            id="user" name="userName" class="domain.User" scope="prototype"
             init-method="intMethod"
             destroy-method="destroyMethod"
     />
@@ -76,7 +76,7 @@
         复杂类型注入
        name="myList": myList:list类型注入
     -->
-    <bean id="userDetailId" name="userDetailName" class="domain.UserDetail">
+    <bean id="userDetailId" name="userDetailName" class="domain.UserDetail" scope="prototype">
         <!--List类型注入-->
         <property name="myList">
             <list>

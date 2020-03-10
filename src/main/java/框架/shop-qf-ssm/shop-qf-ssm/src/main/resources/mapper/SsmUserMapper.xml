@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.SsmUserDao">
+
+    <resultMap id="BaseResultMap" type="com.qf.pojo.SsmUser" >
+        <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="user_email" property="userEmail" />
+        <result column="create_time" property="createTime" />
+        <result column="updat_time" property="updatTime" />
+        <result column="user_state" property="userState" />
+        <result column="user_call" property="userCall" />
+        <result column="user_head_portrait_url" property="userHeadPortraitUrl" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                username,
+                password,
+                user_email,
+                create_time,
+                updat_time,
+                user_state ,
+                user_call,
+                user_head_portrait_url
+    </sql>
+
+
+    <select id="findsingleByUser" parameterType="com.qf.pojo.SsmUser" resultMap="BaseResultMap">
+            SELECT <include refid="Base_Column_List" />
+            FROM ssm_user
+            WHERE user_state = 0
+            <if test ='null != username'>and username = #{username}</if>
+            <if test ='null != password'>and password = #{password}</if>
+            <if test ='null != userEmail'>and user_email = #{userEmail}</if>
+            <if test ='null != id'>and id = #{id}</if>
+            <if test ='null != userCall'>and user_call like "#"{userCall}"#"</if>
+
+    </select>
+
+    <select id="selectAll" parameterType="list" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ssm_user
+        WHERE user_state = 0
+    </select>
+
+    <insert id="insertUser" parameterType="com.qf.pojo.SsmUser">
+        INSERT into ssm_user (username,password,user_email,create_time,updat_time,user_state,user_call,user_head_portrait_url)
+        values (#{username},#{password},#{userEmail},#{createTime},#{updatTime},#{userState},#{userCall},#{userHeadPortraitUrl})
+
+    </insert>
+
+    <update id="updateUserById" parameterType="com.qf.pojo.SsmUser">
+        UPDATE ssm_user
+        <set>
+            <if test ='null != username'>username = #{username},</if>
+            <if test ='null != password'>password = #{password},</if>
+            <if test ='null != userEmail'>user_email = #{userEmail},</if>
+            <if test ='null != createTime'>create_time = #{createTime},</if>
+            <if test ='null != updatTime'>updat_time = #{updatTime},</if>
+            <if test ='null != userState'>user_state = #{userState},</if>
+            <if test ='null != userCall'>user_call = #{userCall},</if>
+            <if test ='null != userHeadPortraitUrl'>user_head_portrait_url = #{userHeadPortraitUrl}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>
