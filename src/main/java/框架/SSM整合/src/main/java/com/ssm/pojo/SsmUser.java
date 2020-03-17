@@ -17,6 +17,7 @@ public class SsmUser {
     private Integer id;
     private String name;
     private String address;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date birthday;
     private String sex;

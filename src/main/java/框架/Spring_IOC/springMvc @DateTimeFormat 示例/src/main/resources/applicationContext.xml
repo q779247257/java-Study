@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+    <!--配置扫描-->
+    <context:component-scan base-package="com.xuanxuan001"></context:component-scan>
+    <!--加载properties文件-->
+    <context:property-placeholder location="classpath:*.properties" />
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--连接数据库的必备信息-->
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://rm-8vbz5jmvs5dai66fdqo.mysql.zhangbei.rds.aliyuncs.com:3306/xuanxuan?characterEncoding=utf-8"></property>
+        <property name="username" value="q779247257"></property>
+        <property name="password" value="Qq8810353"></property>
+    </bean>
+
+    <!--开启spring对注解AOP的支持-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <!-- 配置注解事务开启-->
+    <tx:annotation-driven />
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.qf.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+       <!--<property name="mapperLocations" value="classpath:mapper/*.xml"></property>-->
+    </bean>
+
+</beans>

@@ -61,22 +61,22 @@
 				<%--<a href="../pic/picAll" target="mainFrame">图片管理</a>--%>
 			<%--</li>--%>
 			<%--<!-- 开始 -->--%>
-			<%--<li class="dropdown">--%>
-				<%--<a class="dropdown-toggle" data-toggle="dropdown" href="nav4.html" target="mainFrame">--%>
-					<%--个人设置<span class="caret"></span>--%>
-				<%--</a>--%>
-				<%--<ul class="dropdown-menu">--%>
-					<%--<li>--%>
-						<%--<a href="nav1.html" target="mainFrame">修改密码</a>--%>
-					<%--</li>--%>
-					<%--<li>--%>
-						<%--<a href="nav2.html" target="mainFrame">退出系统</a>--%>
-					<%--</li>--%>
-					<%--<li>--%>
-						<%--<a href="nav3.html" target="mainFrame">查看个人信息</a>--%>
-					<%--</li>--%>
-				<%--</ul>--%>
-			<%--</li>--%>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="nav4.html" target="mainFrame">
+					个人设置<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="nav1.html" target="mainFrame">修改密码</a>
+					</li>
+					<li>
+						<a href="nav2.html" target="mainFrame">退出系统</a>
+					</li>
+					<li>
+						<a href="nav3.html" target="mainFrame">查看个人信息</a>
+					</li>
+				</ul>
+			</li>
 
 		<%--</ul>--%>
 	</div>

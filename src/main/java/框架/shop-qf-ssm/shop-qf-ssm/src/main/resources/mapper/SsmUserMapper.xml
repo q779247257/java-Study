@@ -17,7 +17,7 @@
 
     <sql id="Base_Column_List">
                 id,
-                username,
+                username,@
                 password,
                 user_email,
                 create_time,

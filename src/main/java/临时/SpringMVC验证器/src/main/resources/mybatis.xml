@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+	<!-- spring和mybatis整合后，需要指定使用的日志类 -->
+		<setting name="logImpl" value="log4j"/>
+	</settings>
+
+	<!-- 设置类型的别名 -->
+	<typeAliases>
+		<!-- <typeAlias type="com.qianfeng.crud.Employee" alias="employee"/> -->
+		<typeAlias type="com.qfedu.entity.Employee" alias="employee"/>
+	</typeAliases>
+
+
+	
+</configuration>
+
+

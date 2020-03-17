@@ -25,18 +25,18 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post" action="/Spring_MVC_war/result/insert">
+    <form method="post" action="result/insert">
         <label for="name">resultPost<input type="text" id="name" name="name" /></label>
         <button type="submit">提交</button>
     </form>
     <br/>
-    <form method="post" action="/Spring_MVC_war/result/update">
+    <form method="post" action="result/update">
         <input type="hidden" name="_method" value="PUT" />
         <label for="name">result_Put<input type="text" id="name1" name="name" /></label>
         <button type="submit">提交</button>
     </form>
 
-    <form method="post" action="/Spring_MVC_war/result/delete/1">
+    <form method="post" action="result/delete/1">
         <input type="hidden" name="_method" value="delete" />
         <label for="name">result_Delete<input type="text" id="name12" name="name" /></label>
         <button>提交</button>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.qfedu">
+	</context:component-scan>
+    
+    
+    <!-- 注册转换器
+        注册验证器
+    -->
+    <mvc:annotation-driven conversion-service="convertorService" validator="validator">
+        <!-- 处理json里的日期数据，默认日期被fastjson转为时间戳数据 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+
+    </mvc:annotation-driven>
+
+    <!-- 设置自定义的转换器 -->
+    <bean id="convertorService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <!-- 创建转换器对象 -->
+                <bean class="com.qfedu.convert.CustomDateConvert"></bean>
+                <bean class="com.qfedu.convert.CustomIntConvert"></bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置资源文件 -->
+    <bean id="hibernateMessages" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="basenames">
+            <list>
+                <value>ValidationMessages</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 配置验证器 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
+        <property name="validationMessageSource" ref="hibernateMessages"></property>
+    </bean>
+
+    <!-- 为了在参数上直接使用各种验证注解，需要创建如下对象 -->
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+
+    <!-- 将静态资源 交给tomcat默认的servlet进行处理 -->
+    <mvc:default-servlet-handler/>
+    
+    
+    <!-- 1 如果针对控制器中的方法的形参，可以直接使用相关验证的注解，需要增加该配置 -->
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+    
+     <!-- 视图解析器 -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   		<!-- 前缀 -->
+   		<property name="prefix" value="/"></property>
+   		<!-- 后缀 -->
+   		<property name="suffix" value=".jsp"></property>
+   
+   </bean>
+</beans>

@@ -8,27 +8,32 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 启动包扫描功能，以便注册带有@Controllers、@service、@repository、@Component等注解的类成为spring的bean -->
-    <context:component-scan base-package="com.xuanmvc"/>
-    <context:annotation-config />
+
+
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="com.xuan.controller"/>
+    <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
+    <!-- 会在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，
+    它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，
+    就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理。-->
+    <mvc:default-servlet-handler/>
     <!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/jsp/"/>    <!-- 前缀 -->
+        <property name="prefix" value="/"/>    <!-- 前缀 -->
         <property name="suffix" value=".jsp"/>    <!-- 后缀 -->
     </bean>
-
+    <!--文件上传 Bean 定义-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 默认编码 -->
         <property name="defaultEncoding" value="utf-8" />
-        <!-- 文件大小最大值 单位 b 字节-->
+        <!-- 文件大小最大值 -->
         <property name="maxUploadSize" value="10485760000" />
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
         <!-- 启用是为了推迟文件解析，以便捕获文件大小异常 -->
         <property name="resolveLazily" value="true"/>
     </bean>
-
 </beans>

@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * @Author: 轩轩
@@ -24,7 +25,7 @@ public class OssUtil {
         //获取文件后缀
         String suffix = "."+uploadFile.getOriginalFilename().substring(uploadFile.getOriginalFilename().lastIndexOf(".") + 1);
 //      如果文件名一样，阿里云会直接覆盖，这里我们使用 UUID 等一些分布式id生成器 来作为文件名
-        String filename = "123"+suffix;
+        String filename =  UuidUtils.getUuid()+suffix;
         // 上传
         try {
             ossClient.putObject("xuanandjava", filename, new ByteArrayInputStream(uploadFile.getBytes()));

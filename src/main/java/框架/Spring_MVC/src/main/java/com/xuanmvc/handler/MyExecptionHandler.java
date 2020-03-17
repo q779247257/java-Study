@@ -15,12 +15,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc//开启对 SpringMVC的支持
 public class MyExecptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleException(Exception e){
-        System.out.println("全局异常：" + e);
-
-        ModelAndView modelAndView = new ModelAndView("/error");
-        modelAndView.addObject("error",e);
-        return modelAndView;
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleException(Exception e){
+//        System.out.println("全局异常：" + e);
+//
+//        ModelAndView modelAndView = new ModelAndView("/error");
+//        modelAndView.addObject("error",e);
+//        return modelAndView;
+//    }
 }

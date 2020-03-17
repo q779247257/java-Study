@@ -1,12 +1,10 @@
 package com.qf.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.qf.pojo.SsmUser;
 import com.qf.service.SsmUserService;
 import com.qf.utils.OssUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
