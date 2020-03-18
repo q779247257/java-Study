@@ -1,5 +1,6 @@
 package com.xuan.controller;
 
+import com.xuan.entity.PageVo;
 import com.xuan.entity.Staff;
 import com.xuan.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,10 @@ public class StaffController {
         boolean isSuccess = staffService.deleteById(id);
         return isSuccess;
     }
-
+    @ResponseBody
+    @RequestMapping(value = "/page.do" , method = RequestMethod.GET)
+    public PageVo<Staff> findByPage(@RequestParam(defaultValue = "1") Integer page , @RequestParam(defaultValue = "5") Integer siez){
+        PageVo<Staff> staffPageVo = staffService.queryAll(page, siez);
+        return staffPageVo;
+    }
 }

@@ -60,7 +60,6 @@
 		<script type="text/javascript">
 			// 涉及到表单时，如果使用ajax，需要感觉提交事件，发送ajax请求，同时需要注意：阻止默认的提交的操作
 			$("form").submit(function(){
-				alert("触发ajax");
 				$.ajax({
 					type:"post",
 					url:"/staff/insertByPojo",

@@ -1,5 +1,6 @@
 package com.xuan.service;
 
+import com.xuan.entity.PageVo;
 import com.xuan.entity.Staff;
 import java.util.List;
 
@@ -53,4 +54,15 @@ public interface StaffService {
     boolean deleteById(Integer id);
 
     List<Staff> queryAll();
+
+
+    /**
+     * 分页查询
+     * @param page 当前页
+     * @param siez 每页展示数量
+     * @return 查询的数据
+     */
+    PageVo<Staff> queryAll(Integer page , Integer siez);
+
+
 }

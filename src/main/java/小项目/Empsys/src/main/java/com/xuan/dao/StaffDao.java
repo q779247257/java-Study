@@ -62,4 +62,6 @@ public interface StaffDao {
      */
     int deleteById(Integer id);
 
+    int count();
+
 }

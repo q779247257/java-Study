@@ -81,4 +81,8 @@
         delete from java_study.staff where id = #{id}
     </delete>
 
+    <select id="count" resultType="int">
+        select count(1) from java_study.staff;
+    </select>
+
 </mapper>

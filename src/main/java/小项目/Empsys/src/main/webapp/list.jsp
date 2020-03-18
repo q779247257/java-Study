@@ -60,24 +60,24 @@
 	<script type="text/javascript">
 		//页面加载完之后加载次函数
 		$(function(){
-			loadData();
+			loadData(1);
 		})
 
-		function loadData(){
+		function loadData(page){
 			$.ajax({
 				type:"get",
-				url:"/staff/findAll",
+				url:"/staff/page.do?page="+page+"&size=5",
 				dataType:"json",
 				success:function(data){
 					// 清空表格的数据
 						$("#tid").empty();
 						// 找到要遍历的数据
-						var infos = data
+						var infos = data.pageList;
 						// 循环遍历
 						$(infos).each(function(index,element){
 							// 组装html格式的字符串
 							var html = "<tr>";
-							html += "	<td>" + index + "</td>";
+							html += "	<td>" + (index+1) + "</td>";
 							html += "	<td>" + element.name + "</td>";
 							html += "	<td>" + element.sex + "</td>";
 							html += "	<td>" + element.age + "</td>";
@@ -89,6 +89,13 @@
 							// 根据html格式字符串创建dom对象，将对象添加到对应表格的最后
 							$("#tid").append($(html));
 						})
+					var html = '<tr><td colspan="6">' +
+							'<a href="javascript:loadData(1)">首页</a>&nbsp;' +
+							'<a href="javascript:loadData(' + (data.currentPage - 1) + ')">上一页</a>&nbsp;' +
+							'<a href="javascript:loadData(' + (data.currentPage + 1) + ')">下一页</a>&nbsp;' +
+							'<a href="javascript:loadData(' + data.totalPage + ')">末页</a>' +
+							'</td></tr>';
+					$("#tid").append($(html));
 				},
 				error:function(){
 					alert("ajax报错");
@@ -107,7 +114,7 @@
 							//window.location.href = "list.jsp";
 							// 因为是在同一页面，没有必要，重新定位到list.jsp
 							// 可以直接发送ajax请求，获取所有数据，重新绑定
-							loadData();
+							loadData(1);
 					}
 				})
 			}
