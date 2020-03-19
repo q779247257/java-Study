@@ -38,6 +38,18 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <property name="plugins">
+        <array>
+            <bean class="com.github.pagehelper.PageInterceptor">
+                <property name="properties">
+                    <!--使用下面的方式配置参数，一行配置一个 -->
+                    <value>
+                        helperDialect=mysql
+                    </value>
+                </property>
+            </bean>
+        </array>
+        </property>
     </bean>
 
 
