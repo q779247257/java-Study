@@ -19,9 +19,9 @@ public interface LamvdaTest {
 //
 //
 //    }
-    public int sum();
+//    public int sum();
 
-//    public int sum2(Integer x ,Integer y,Integer z);
+    public int sum2(Integer x ,Integer y,Integer z);
 
 
 

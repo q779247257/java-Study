@@ -9,9 +9,8 @@
             http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.xuan.controller"/>
+    <context:component-scan base-package="com.qf.controller"/>
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
     <!-- 会在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，
@@ -21,19 +20,24 @@
     <!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/"/>    <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>    <!-- 前缀 -->
         <property name="suffix" value=".jsp"/>    <!-- 后缀 -->
     </bean>
-    <!--文件上传 Bean 定义-->
+    <!--文件上传bean 定义-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 默认编码 -->
         <property name="defaultEncoding" value="utf-8" />
         <!-- 文件大小最大值 -->
         <property name="maxUploadSize" value="10485760000" />
-        <!-- 内存中的最大值88 -->
+        <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
         <!-- 启用是为了推迟文件解析，以便捕获文件大小异常 -->
         <property name="resolveLazily" value="true"/>
     </bean>
+
+    <!-- 静态资源解析 包括 ：js、css、img、.. -->
+    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/img/" mapping="/img/**" />
+    <mvc:resources location="/css/" mapping="/css/**" />
 </beans>

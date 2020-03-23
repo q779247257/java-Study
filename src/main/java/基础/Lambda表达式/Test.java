@@ -7,9 +7,10 @@ package 基础.Lambda表达式;
  */
 public class Test {
     public static void main(String[] args) {
-        LamvdaTest number = () -> {return 2;};
-        LamvdaTest number2 = () -> 3;
+//        LamvdaTest number = () -> {return 2;};
+//        LamvdaTest number2 = () -> 3;
+        LamvdaTest number2 = (a,b,c) -> a+b+c;
 
-        System.out.println(number2.sum());
+        System.out.println(number2.sum2(2,2,2));
     }
 }

@@ -1,6 +1,7 @@
 package read_excel;
 
 
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * @Author: 轩轩
@@ -47,11 +49,18 @@ public class readXlsx_Test {
     @Test
     public void readALlValue() throws Exception {
         XSSFSheet sheet = workbook.getSheet("Sheet1");//获取工作表
-        sheet.iterator().forEachRemaining(row -> {
-            row.forEach(cell -> {
-                System.out.println("info:"+cell.getStringCellValue());
+        sheet.forEach(row -> {//循环获取行
+            row.forEach(cell -> {//循环获取列
+                //获取指定单元格内容
+                String stringCellValue = cell.getStringCellValue();
+                System.out.println("info:"+stringCellValue);
             });
         });
+//        sheet.iterator().forEachRemaining(row -> {
+//            row.forEach(cell -> {
+//                System.out.println("info:"+cell.getStringCellValue());
+//            });
+//        });
 
     }
 

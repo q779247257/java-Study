@@ -1,5 +1,7 @@
 package com.xuan.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.xuan.entity.PageVo;
 import com.xuan.entity.Staff;
 import com.xuan.dao.StaffDao;
@@ -94,17 +96,22 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public PageVo<Staff> queryAll(Integer page, Integer siez) {
         PageVo<Staff> staffPageVo = new PageVo<>();
-        //计算数据起始行
-        int index = (page - 1) * siez;
+
         //查询数据
-        List<Staff> staff = staffDao.queryAllByLimit(index, siez);
+        PageHelper.startPage(page,siez);
+        List<Staff> staff = staffDao.queryAll(new Staff());
+        Page pages = (Page) staff;
+
+//        long total = pages.getTotal();//总条数
+//        System.out.println("总条数为："+total);
+
+           //当前页数
+        pages.getPageSize(); //每页展示数量
+
+
         staffPageVo.setPageList(staff);//设置查询出的数据
-
-        staffPageVo.setCurrentPage(page);//设置当前页
-
-        int count = staffDao.count();//获取总记录数量
-        int totalPageNum = (count + siez - 1) / siez;//计算总页数
-        staffPageVo.setTotalPage(totalPageNum);//设置总页数
+        staffPageVo.setCurrentPage(pages.getPageNum());//设置当前页
+        staffPageVo.setTotalPage(pages.getPages());//最大页
         return staffPageVo;
     }
 }
