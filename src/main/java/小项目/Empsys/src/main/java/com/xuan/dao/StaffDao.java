@@ -64,4 +64,7 @@ public interface StaffDao {
 
     int count();
 
+    //批量插入
+    void addBatch(List<Staff> list);
+
 }

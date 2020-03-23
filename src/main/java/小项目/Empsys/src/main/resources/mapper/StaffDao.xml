@@ -85,4 +85,15 @@
         select count(1) from java_study.staff;
     </select>
 
+    <!--批量插入-->
+    <insert id="addBatch" parameterType="list">
+        insert into
+        java_study.staff
+        (id, name, age, sex, phone)
+        values
+        <foreach collection="list" item="emp" separator=",">
+            (#{emp.id}, #{emp.name}, #{emp.age}, #{emp.sex}, #{emp.phone})
+        </foreach>
+    </insert>
+
 </mapper>

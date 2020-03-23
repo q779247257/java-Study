@@ -114,4 +114,9 @@ public class StaffServiceImpl implements StaffService {
         staffPageVo.setTotalPage(pages.getPages());//最大页
         return staffPageVo;
     }
+
+    @Override
+    public void addEmps(List<Staff> list) {
+        staffDao.addBatch(list);
+    }
 }

@@ -64,5 +64,10 @@ public interface StaffService {
      */
     PageVo<Staff> queryAll(Integer page , Integer siez);
 
+    /**
+     * 批量增加
+     * @param list 增加的数据POJO集合
+     */
+    public void addEmps(List<Staff> list);
 
 }
