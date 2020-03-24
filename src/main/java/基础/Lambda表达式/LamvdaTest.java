@@ -16,8 +16,6 @@ public interface LamvdaTest {
 //            System.out.println("函数式接口");
 //            return Integer.compare(x, y);
 //        };
-//
-//
 //    }
 //    public int sum();
 
