@@ -50,7 +50,6 @@ public class ExcelUtils {
         int lastRowNum = sheet.getLastRowNum();
         //从第二行开始遍历
         List<Map<String,Object>> list = new ArrayList<>();
-        int j = 1;
         for (int i=1 ; i<=lastRowNum ; i++){
             //获取行
             Row row = sheet.getRow(i);

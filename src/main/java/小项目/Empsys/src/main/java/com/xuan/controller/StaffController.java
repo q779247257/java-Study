@@ -40,8 +40,7 @@ public class StaffController {
     @RequestMapping(value = "/selectAll",method = RequestMethod.GET)
     public ModelAndView selectAll(){
         ModelAndView modelAndView = new ModelAndView();
-
-       List<Staff> staffList =  staffService.queryAll();
+        List<Staff> staffList =  staffService.queryAll();
         modelAndView.addObject("list",staffList);
         modelAndView.setViewName("list");
         return modelAndView;
