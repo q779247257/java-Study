@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * @Author: 轩轩
  * @Date: 2020/3/20 16:10
- * @description:
+ * @description: 此类用于文件类操作
  */
 @Controller
 @RequestMapping("/file")
