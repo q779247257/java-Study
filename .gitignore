@@ -97,4 +97,4 @@ hs_err_pid*
 "src/main/java/\346\241\206\346\236\266/Spring_\344\272\213\345\212\241/target/generated-sources/"
 target/classes/META-INF/
 target/generated-sources/
-/src/main/java/框架/shop-qf-ssm/shop-qf-ssm/pom.xml
+#/src/main/java/框架/shop-qf-ssm/shop-qf-ssm/pom.xml

@@ -1,5 +1,9 @@
 package 算法;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 /**
  * @Author: 轩轩
  * @Date: 2020/3/25 13:47
@@ -7,8 +11,8 @@ package 算法;
  */
 public class AlgorithmCode {
     public static void main(String[] args) {
-        boolean palindrome = new AlgorithmCode().isPalindrome(10);
-        System.out.println("结果"+palindrome);
+        int aabbcc = new AlgorithmCode().reverse("abcabcbb".length());
+        System.out.println("结果"+aabbcc);
 
     }
     //todo 整数反转 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
@@ -56,4 +60,9 @@ public class AlgorithmCode {
         System.out.println("resultNumber:"+resultNumber);
         return resultNumber == sum;
     }
+
+
+
+
+
 }
