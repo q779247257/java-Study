@@ -45,4 +45,9 @@ public class FileController {
         staffService.addEmps(syaffs);
         return new ModelAndView("list");
     }
+
+    public void testUpload(){
+        System.out.println("测试提交");
+        ////todo 测试提交的代码
+    }
 }
