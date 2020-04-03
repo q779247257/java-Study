@@ -1,0 +1,23 @@
+//声明为protobuf3
+syntax = "proto3";
+//声明生成的java文件的包名
+option java_package = "com.xuan.protobuf_pojo";
+//声明生成的java文件的名称
+option java_outer_classname = "PersonProto";
+//声明一个内部类，整个文件可以理解为是一个名为 PersonProto的java类，而里面声明的message相当于PersonProto的内部类
+message Person {
+//  对于属性声明，格式为：标注+类型+属性名+属性顺序号+[默认值]
+    string name = 1;
+    int32 age = 2;
+    bool sex = 3;
+    int64 birthday = 4;
+    string address = 5;
+    repeated Car cars = 6;
+    map<string, string> other = 7;
+}
+
+message Car{
+    string name = 1;
+    string coloe =2;
+}
+
