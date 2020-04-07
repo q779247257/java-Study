@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.menu.MenuDao">
+
+    <resultMap id="menuMap" type="com.qfedu.menu.VMenuInfo">
+        <id property="pid" column="id"/>
+        <result column="pname" property="pname"/>
+        <result column="url" property="url"/>
+        <collection property="cmenuList" javaType="java.util.ArrayList" ofType="com.qfedu.menu.VMenuInfo">
+            <id property="pid" column="cid"/>
+            <result column="cname" property="pname"/>
+            <result column="url" property="curl"/>
+        </collection>
+    </resultMap>
+
+    <select id="findMenu" parameterType="string" resultMap="menuMap">
+	SELECT
+	p.id,
+	p.power_name as pname,
+	p.prower_url as url,
+	c.id as cid,
+	c.power_name as cname,
+	c.prower_url as curl
+FROM
+	shiro_power p
+	INNER JOIN
+	shiro_power c
+	ON p.id = c.parner_id
+	INNER JOIN
+	shiro_role_power rp
+	ON rp.power_id = c.id
+	INNER  JOIN shiro_user_role ur
+	ON ur.role_id = rp.role_id
+	INNER JOIN shiro_user u
+	ON u.uid = ur.user_id
+	WHERE u.user_name = #{name}
+	</select>
+
+</mapper>
