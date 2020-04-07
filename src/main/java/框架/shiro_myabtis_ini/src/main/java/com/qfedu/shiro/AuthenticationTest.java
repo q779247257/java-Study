@@ -20,22 +20,17 @@ public class AuthenticationTest {
         SecurityManager securityManager = factory.getInstance();
         // 把securityManager实例绑定到SecurityUtils
         SecurityUtils.setSecurityManager(securityManager);
-
         //获取Subjct对象主题
         Subject subject = SecurityUtils.getSubject();
-
-        // 创建token令牌，用户名/密码
-        UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "123");
-
+        // 根据输入的用户名和密码生成token对象
+        UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "12345");
         try {
-            //身份认证
+            // 身份认证
             subject.login(token);
-            System.out.println("用户登录成功");
+            System.out.println("登录成功");
         } catch (AuthenticationException e) {
             e.printStackTrace();
             System.out.println("登录失败");
         }
-
-
     }
 }
