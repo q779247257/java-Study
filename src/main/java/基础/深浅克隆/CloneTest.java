@@ -15,5 +15,6 @@ public class CloneTest {
         System.out.println("Cat2  : " + cat2);
                 System.out.println("Cat1 CatChnild name : " + cat.getCatChild().getName());
         System.out.println("Cat2 CatChnild name : " + cat2.getCatChild().getName());
+        System.out.println("Cat1 is == Cat2:" + (cat2 == cat));
     }
 }
