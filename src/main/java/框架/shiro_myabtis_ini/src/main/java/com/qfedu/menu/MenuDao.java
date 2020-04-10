@@ -8,6 +8,5 @@ import java.util.List;
  * @description:
  */
 public interface MenuDao {
-
     public List<VMenuInfo> findMenu(String name);
 }

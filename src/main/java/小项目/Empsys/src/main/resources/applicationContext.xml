@@ -52,4 +52,36 @@
         </array></property>
     </bean>
 
+    <!-- 自定义Realm -->
+    <bean id="myRealm" class="com.rr.realm.MyRealm"/>
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+        <!--<property name="cacheManager" ref="cacheManager" /> 缓冲管理器-->
+    </bean>
+
+    <!-- Shiro过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 未登陆时，访问需要认证的资源，则跳转到登录页面的配置 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 权限认证失败，则跳转到指定页面 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!-- Shiro连接约束配置,即过滤链的定义 -->
+        <property name="filterChainDefinitions">
+            <value>
+
+                <!--  /login=anon
+                 /user/admin*=authc
+                 /user/student*/**=roles[teacher]
+                 /user/teacher*/**=perms["user:create"] -->
+                /user/login.do=anon
+                <!-- user下的所有内容都需要身份认证 -->
+                /user/*=authc
+            </value>
+        </property>
+    </bean>
+
 </beans>
