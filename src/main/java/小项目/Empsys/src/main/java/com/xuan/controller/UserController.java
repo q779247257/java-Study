@@ -3,7 +3,6 @@ package com.xuan.controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Author: 轩轩
  * @Date: 2020/4/12 21:47
  * @description: 此类主要用来测试shiro的授权和认证
+ *
+ * @RequiresPermissions ：要求当前Subject在执行被注解的方法时具备一个或多个对应的权限。
+ * @RequiresRoles ：要求当前Subject在执行被注解的方法时具备所有的角色，否则将抛出AuthorizationException异常。
+ * @RequiresAuthentication：要求在访问或调用被注解的类/实例/方法时，Subject在当前的session中已经被验证。
  */
 @Controller
 public class UserController {
@@ -40,13 +43,13 @@ public class UserController {
     }
 
     //需要 user:list 权限才能访问test.do
-    @RequiresPermissions("user:list")
+//    @RequiresPermissions("user:list")
     @RequestMapping("/test.do")
     public String test(){
         return "redirect:add.jsp";
     }
 
-    @RequiresPermissions("user:ddd")
+//    @RequiresPermissions("user:ddd")
     @RequestMapping("/test2.do")
     public String test2(){
         return "redirect:add.jsp";

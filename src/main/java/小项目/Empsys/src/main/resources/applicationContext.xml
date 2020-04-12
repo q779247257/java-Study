@@ -75,13 +75,15 @@
                 <!-- aono 表示的是匿名访问 -->
                 /login.do = anon
                 /login.jsp = anon
-                <!-- authc： 经过身份认证后  可以访问 -->
-                /**=authc
+
 
                 <!--以为为配置权限 通过perms-->
                 <!--test.do 的时候需要 user:list 权限-->
-                <!--/test.do/**=authc,perms["user:list"]-->
-                <!--/test2.do/**=authc,perms["user:ddd"]-->
+                /test.do=perms["user:list"]
+                /test2.do=perms["user:ddd"]
+
+                <!-- authc： 经过身份认证后  可以访问 这个要放在最后面 -->
+                /**=authc
 
                 <!--  /login=anon
                  /user/admin*=authc
