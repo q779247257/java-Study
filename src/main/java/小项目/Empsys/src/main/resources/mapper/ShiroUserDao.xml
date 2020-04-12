@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuan.dao.ShiroUserDao">
+
+    <resultMap type="com.xuan.entity.ShiroUser" id="ShiroUserMap">
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="username" column="user_name" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ShiroUserMap">
+        select
+          uid, user_name, password
+        from java_study.shiro_user
+        where uid = #{uid}
+    </select>
+
+    <!-- 根据name 查询 -->
+    <select id="queryByName" resultMap="ShiroUserMap">
+        select
+          uid, user_name, password
+        from java_study.shiro_user
+        where user_name = #{name}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ShiroUserMap">
+        select
+          uid, user_name, password
+        from java_study.shiro_user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ShiroUserMap">
+        select
+          uid, user_name, password
+        from java_study.shiro_user
+        <where>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="uid" useGeneratedKeys="true">
+        insert into java_study.shiro_user(user_name, password)
+        values (#{userName}, #{password})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update java_study.shiro_user
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from java_study.shiro_user where uid = #{uid}
+    </delete>
+
+</mapper>

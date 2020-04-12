@@ -53,7 +53,7 @@
     </bean>
 
     <!-- 自定义Realm -->
-    <bean id="myRealm" class="com.rr.realm.MyRealm"/>
+    <bean id="myRealm" class="com.xuan.realm.MyRealm"/>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -72,6 +72,12 @@
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
+                <!-- aono 表示的是匿名访问 -->
+                /login.do = anon
+                /login.jsp = anon
+                <!-- authc： 经过身份认证后  可以访问 -->
+                /**=authc
+
 
                 <!--  /login=anon
                  /user/admin*=authc
@@ -79,7 +85,7 @@
                  /user/teacher*/**=perms["user:create"] -->
                 /user/login.do=anon
                 <!-- user下的所有内容都需要身份认证 -->
-                /user/*=authc
+                <!--/user/*=authc-->
             </value>
         </property>
     </bean>
