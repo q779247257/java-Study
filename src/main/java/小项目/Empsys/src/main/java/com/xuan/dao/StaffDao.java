@@ -67,4 +67,15 @@ public interface StaffDao {
     //批量插入
     void addBatch(List<Staff> list);
 
+    /**
+     * 根据用户名查询出用户所拥有的角色
+     * @param name 用户名
+     */
+    List<String> findRolesByName(String name);
+    /**
+     * 根据用户名查询出用户所拥有的权限
+     * @param name 用户名
+     */
+    List<String> findPermsByName(String name);
+
 }

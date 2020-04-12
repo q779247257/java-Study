@@ -78,12 +78,16 @@
                 <!-- authc： 经过身份认证后  可以访问 -->
                 /**=authc
 
+                <!--以为为配置权限 通过perms-->
+                <!--test.do 的时候需要 user:list 权限-->
+                <!--/test.do/**=authc,perms["user:list"]-->
+                <!--/test2.do/**=authc,perms["user:ddd"]-->
 
                 <!--  /login=anon
                  /user/admin*=authc
                  /user/student*/**=roles[teacher]
                  /user/teacher*/**=perms["user:create"] -->
-                /user/login.do=anon
+                <!--/user/login.do=anon-->
                 <!-- user下的所有内容都需要身份认证 -->
                 <!--/user/*=authc-->
             </value>

@@ -11,6 +11,5 @@
     <select id="finyByName" parameterType="string" resultMap="userMap">
         select * FROM shiro_user
         WHERE id = #{id}
-
     </select>
 </mapper>
