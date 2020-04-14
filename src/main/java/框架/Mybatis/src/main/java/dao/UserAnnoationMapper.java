@@ -17,7 +17,8 @@ public interface UserAnnoationMapper {
             @Result(column = "name",property = "name"),
             @Result(column = "sex",property = "sex"),
             @Result(column = "address",property = "address"),
-            @Result(column = "birthday",property = "birthday")
+            @Result(column = "birthday",property = "birthday"),
+            @Result(column = "bio",property = "bio")
     })
     @Select("select * from user")
     List<User> findAll();
