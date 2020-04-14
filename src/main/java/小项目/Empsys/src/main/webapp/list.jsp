@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <!DOCTYPE html>
 <html>
 
@@ -33,6 +34,8 @@
 	</head>
 
 	<body>
+	<%-- 显示用户的用户名 --%>
+	<shiro:principal></shiro:principal>
 		<div>
 			<h3>所有员工信息</h3>
 			<a href="/add.jsp">添加员工信息</a><br/>
@@ -84,7 +87,9 @@
 							html += "	<td>" + element.phone + "</td>";
 							// 针对超链接 ，要想发送ajax请求，可以点击超链接时，执行一个函数，在函数中发送ajax请求
 							// href='javascript:delEmp()'表示，点击超链接，执行对应的js函数
-							html += "	<td><a href='javascript:delEmp(" + this.id + ")'>删除</a> <a href='update.jsp?id=" + this.id + "'>修改</a></td>";
+							html += "	<td>" +
+									"<shiro:hasPermission name="user:del"><a href='javascript:delEmp(" + this.id + ")'>删除</a> </shiro:hasPermission> " +
+									"<a href='update.jsp?id=" + this.id + "'>修改</a></td>";
 							html += "</tr>";
 							// 根据html格式字符串创建dom对象，将对象添加到对应表格的最后
 							$("#tid").append($(html));
