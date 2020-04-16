@@ -58,7 +58,29 @@
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
-        <!--<property name="cacheManager" ref="cacheManager" /> 缓冲管理器-->
+        <!--  缓冲管理器 -->
+        <property name="cacheManager" ref="cacheManager" />
+        <property name="rememberMeManager" ref="rememberMeManager" />
+    </bean>
+
+    <!-- 缓存管理器 使用Ehcache实现 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+    </bean>
+
+    <!-- remenberMe配置 -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe" />
+        <!-- 是否只能通过 Http 协议来获取Cookie数据
+             false： 既可以通道 Http 也可以通过js 获取Cookie数据-->
+            <property name="httpOnly" value="true" />
+        <!-- 默认记住7天（单位：秒） -->
+        <property name="maxAge" value="604800" />
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}" />
+        <property name="cookie" ref="rememberMeCookie" />
     </bean>
 
     <!-- Shiro过滤器 -->
@@ -83,7 +105,9 @@
                 /test2.do=perms["user:ddd"]
 
                 <!-- authc： 经过身份认证后  可以访问 这个要放在最后面 -->
-                /**=authc
+                <!--/**=authc-->
+                <!--  使用记住我（rememberMe）的功能的时候 使用user过滤器，包含认证和 rememberMe 功能 -->
+                /**=user
 
                 <!--  /login=anon
                  /user/admin*=authc
