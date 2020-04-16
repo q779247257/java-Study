@@ -90,7 +90,7 @@
         <!-- 未登陆时，访问需要认证的资源，则跳转到登录页面的配置 -->
         <property name="loginUrl" value="/login.jsp"/>
         <!-- 权限认证失败，则跳转到指定页面 -->
-        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
@@ -102,7 +102,8 @@
                 <!--以为为配置权限 通过perms-->
                 <!--test.do 的时候需要 user:list 权限-->
                 /test.do=perms["user:list"]
-                /test2.do=perms["user:ddd"]
+                <!--/test2.do=perms["user:ddd"]-->
+                /logout.do = logout
 
                 <!-- authc： 经过身份认证后  可以访问 这个要放在最后面 -->
                 <!--/**=authc-->
@@ -118,6 +119,22 @@
                 <!--/user/*=authc-->
             </value>
         </property>
+        <!--  设置自定义的filter -->
+        <property name="filters">
+            <map>
+                <!--  注意key的值 -->
+                <entry key="perms" value-ref="myPermFilter" />
+            </map>
+        </property>
     </bean>
+
+    <!-- 手动创建了一个logout过滤器的对象，主要是为了指定 退出后需要跳转的资源
+         id 可以随便写 需要对应上面的  /logout.do = logout（beanId） -->
+    <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/login.jsp" />
+    </bean>
+
+    <!--  创建自定义的授权处理的对象 -->
+    <bean id="myPermFilter" class="com.xuan.realm.MyPermFitler"></bean>
 
 </beans>

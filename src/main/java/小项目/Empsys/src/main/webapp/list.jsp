@@ -36,6 +36,8 @@
 	<body>
 	<%-- 显示用户的用户名 --%>
 	<shiro:principal></shiro:principal>
+	<a href="logout.do">退出登录</a>
+	<a href="javascript:testPerms()"	>测试shiro ajax超链接 </a>
 		<div>
 			<h3>所有员工信息</h3>
 			<a href="/add.jsp">添加员工信息</a><br/>
@@ -120,6 +122,17 @@
 							// 因为是在同一页面，没有必要，重新定位到list.jsp
 							// 可以直接发送ajax请求，获取所有数据，重新绑定
 							loadData(1);
+					}
+				})
+			}
+			
+			function testPerms() {
+				$.ajax({
+					type:"get",
+					url:"test2.do",
+					dataType:"text",
+					success:function(data){
+						alert(data);
 					}
 				})
 			}
