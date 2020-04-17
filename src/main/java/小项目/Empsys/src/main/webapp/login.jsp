@@ -20,6 +20,8 @@
 <form action="login.do" method="post">
     name <input type="text" name="username" /><br />
     password <input type="text" name="password" /> <br />
+    <%-- 是否记住我 --%>
+    <input type="checkbox" name="isRemember" value="1" /> 记住我 <br />
     <input type="submit" value="login" />
 </form>
 

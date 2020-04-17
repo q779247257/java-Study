@@ -6,6 +6,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Author: 轩轩
@@ -23,15 +24,23 @@ public class UserController {
      * 登录
      * @param username 账户
      * @param password 密码
+     * @param isRemember  是否记住我
      * @return 成功跳转到list jsp 页面
      */
     @RequestMapping("/login.do")
-    public String login(String username , String password){
+    public String login(String username , String password ,
+                        @RequestParam(value = "isRemember",defaultValue = "0") Integer isRemember ){
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         //获得主题对象
         Subject subject = SecurityUtils.getSubject();
 
-        try {
+        //如果传过来为1 则页面勾选记住我
+        if(isRemember == 1){
+            System.out.println("开启shiro的记住我功能");
+            //设置记住我
+            token.setRememberMe(true);
+        }
+      try {
             subject.login(token);
             //登录成功跳转到登录页面
             return "redirect:/list.jsp";

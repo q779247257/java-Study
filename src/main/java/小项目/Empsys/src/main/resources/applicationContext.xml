@@ -58,7 +58,29 @@
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
-        <!--<property name="cacheManager" ref="cacheManager" /> 缓冲管理器-->
+        <!--  缓冲管理器 -->
+        <property name="cacheManager" ref="cacheManager" />
+        <property name="rememberMeManager" ref="rememberMeManager" />
+    </bean>
+
+    <!-- 缓存管理器 使用Ehcache实现 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+    </bean>
+
+    <!-- remenberMe配置 -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe" />
+        <!-- 是否只能通过 Http 协议来获取Cookie数据
+             false： 既可以通道 Http 也可以通过js 获取Cookie数据-->
+            <property name="httpOnly" value="true" />
+        <!-- 默认记住7天（单位：秒） -->
+        <property name="maxAge" value="604800" />
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}" />
+        <property name="cookie" ref="rememberMeCookie" />
     </bean>
 
     <!-- Shiro过滤器 -->
@@ -68,7 +90,7 @@
         <!-- 未登陆时，访问需要认证的资源，则跳转到登录页面的配置 -->
         <property name="loginUrl" value="/login.jsp"/>
         <!-- 权限认证失败，则跳转到指定页面 -->
-        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
@@ -80,10 +102,13 @@
                 <!--以为为配置权限 通过perms-->
                 <!--test.do 的时候需要 user:list 权限-->
                 /test.do=perms["user:list"]
-                /test2.do=perms["user:ddd"]
+                <!--/test2.do=perms["user:ddd"]-->
+                /logout.do = logout
 
                 <!-- authc： 经过身份认证后  可以访问 这个要放在最后面 -->
-                /**=authc
+                <!--/**=authc-->
+                <!--  使用记住我（rememberMe）的功能的时候 使用user过滤器，包含认证和 rememberMe 功能 -->
+                /**=user
 
                 <!--  /login=anon
                  /user/admin*=authc
@@ -94,6 +119,22 @@
                 <!--/user/*=authc-->
             </value>
         </property>
+        <!--  设置自定义的filter -->
+        <property name="filters">
+            <map>
+                <!--  注意key的值 -->
+                <entry key="perms" value-ref="myPermFilter" />
+            </map>
+        </property>
     </bean>
+
+    <!-- 手动创建了一个logout过滤器的对象，主要是为了指定 退出后需要跳转的资源
+         id 可以随便写 需要对应上面的  /logout.do = logout（beanId） -->
+    <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/login.jsp" />
+    </bean>
+
+    <!--  创建自定义的授权处理的对象 -->
+    <bean id="myPermFilter" class="com.xuan.realm.MyPermFitler"></bean>
 
 </beans>
