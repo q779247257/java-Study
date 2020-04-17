@@ -1,7 +1,5 @@
 package com.email;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -30,7 +28,6 @@ public class EmailDemo {
 
         // 构建授权信息，用于进行SMTP进行身份验证
         Authenticator authenticator = new Authenticator() {
-
             protected PasswordAuthentication getPasswordAuthentication() {
                 // 用户名、密码
                 String userName = props.getProperty("mail.user");
@@ -46,12 +43,14 @@ public class EmailDemo {
         InternetAddress form = new InternetAddress(props.getProperty("mail.user"));
         message.setFrom(form);
         // 设置收件人的邮箱
-        InternetAddress to = new InternetAddress("xuanandjava@163.com");
+        InternetAddress to = new InternetAddress("779247257@qq.com");
         message.setRecipient(Message.RecipientType.TO, to);
         // 设置邮件标题
-        message.setSubject("标题");
+        message.setSubject("标题66666");
         // 设置邮件的内容体
-        message.setContent("这是轩轩通过qq邮箱发送的邮件", "text/html;charset=UTF-8");
+        message.setContent("这是轩轩通过邮箱发送的邮件,请点击下方进行激活\n" +
+                "http://www.baidu.com", "text/html;charset=UTF-8");
+        System.out.println("发送的内容为;"+message.getContent());
         // 最后当然就是发送邮件啦
         Transport.send(message);
 
