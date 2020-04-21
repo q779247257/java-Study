@@ -1,10 +1,8 @@
 package com.xuan.realm;
 
-import com.xuan.dao.ShiroDao;
 import com.xuan.dao.ShiroUserDao;
 import com.xuan.dao.StaffDao;
 import com.xuan.entity.ShiroUser;
-import com.xuan.entity.Staff;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
