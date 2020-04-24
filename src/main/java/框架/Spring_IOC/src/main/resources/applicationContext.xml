@@ -72,6 +72,16 @@
         <property name="userLogin" ref="userLoginId"/>
     </bean>
 
+    <!--   init-method： 对象初始化方法
+          destroy-method： 对象销毁方法
+          scope="prototype"
+          -->
+    <bean id="studentId" class="domain.Student"    init-method="init" destroy-method="destroy">
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="18"/>
+        <property name="sex" value="男"/>
+    </bean>
+
     <!--
         复杂类型注入
        name="myList": myList:list类型注入
@@ -103,7 +113,6 @@
                <entry key="sex" value="男"></entry>
             </map>
         </property>
-
         <!--Set类型注入-->
         <property name="mySet">
             <set>
@@ -121,6 +130,7 @@
             </props>
         </property>
     </bean>
+
 
 
 </beans>
