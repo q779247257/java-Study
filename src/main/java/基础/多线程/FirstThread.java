@@ -16,6 +16,8 @@ public class FirstThread extends Thread {
             System.out.println(Thread.currentThread().getName()+""+i);
             //创建并启动第一个线程
             FirstThread firstThread01 = new FirstThread();
+            //线程优先级 1- 10
+            firstThread01.setPriority(6);
             firstThread01.start();
             //创建并启动第二个线程
             FirstThread firstThread02 = new FirstThread();
