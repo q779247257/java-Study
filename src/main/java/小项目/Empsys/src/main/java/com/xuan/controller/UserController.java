@@ -3,10 +3,11 @@ package com.xuan.controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: 轩轩
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @RequiresAuthentication：要求在访问或调用被注解的类/实例/方法时，Subject在当前的session中已经被验证。
  */
 @Controller
+@ControllerAdvice
 public class UserController {
 
     /**
@@ -58,9 +60,18 @@ public class UserController {
         return "redirect:add.jsp";
     }
 
-//    @RequiresPermissions("user:ddd")
+    @RequiresPermissions("user:ddd")
     @RequestMapping("/test2.do")
     public String test2(){
         return "redirect:add.jsp";
     }
+
+    /** 使用注解的shiro ajax异常的时候 就使用异常捕捉 */
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseBody
+    public String unauthorizedException(UnauthorizedException e){
+        e.printStackTrace();
+        return "not is perms";
+    }
+
 }

@@ -1,5 +1,6 @@
 package client;
 
+import domain.Student;
 import domain.User;
 import domain.UserDetail;
 import org.junit.Test;
@@ -153,5 +154,14 @@ public class TestClient {
         UserDetail user = applicationContext.getBean("userDetailId", UserDetail.class);
         UserDetail users = applicationContext.getBean("userDetailId", UserDetail.class);
         System.out.println("user = " + user);
+    }
+
+    @Test
+    public void getStudent(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Student student = applicationContext.getBean("studentId", Student.class);
+        //关闭容器
+        applicationContext.close();
+        System.out.println("info:容器关闭" );
     }
 }

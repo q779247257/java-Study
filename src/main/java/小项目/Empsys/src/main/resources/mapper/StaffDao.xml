@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xuan.dao.StaffDao">
+<mapper namespace="xuan.code.dao.StaffDao">
 
-    <resultMap type="com.xuan.entity.Staff" id="StaffMap">
+    <resultMap type="xuan.code.entity.Staff" id="StaffMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
@@ -18,33 +18,16 @@
         where id = #{id}
     </select>
 
-    <select id="findRolesByName" parameterType="string" resultType="string">
-SELECT
-	r.role_name
-FROM
-	shiro_user u
-	INNER JOIN shiro_user_role ur ON u.uid = ur.user_id
-	INNER JOIN shiro_role r ON r.r_id = ur.role_id
-WHERE
-	u.user_name = #{name}
-    </select>
-
-    <select id="findPermsByName" parameterType="string" resultType="string">
-SELECT
-	p.power_desc
-FROM
-	shiro_user u
-	INNER JOIN shiro_user_role ur ON u.uid = ur.user_id
-	INNER JOIN shiro_role_power rp ON rp.role_id = ur.role_id
-	INNER JOIN shiro_power p ON p.id = rp.power_id
-WHERE
-	u.user_name = #{name}
-	AND p.power_desc IS NOT NULL
-	AND p.power_desc != ''
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StaffMap">
+        select
+          id, name, age, sex, phone
+        from java_study.staff
+        limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll"  resultMap="StaffMap">
+    <select id="queryAll" resultMap="StaffMap">
         select
           id, name, age, sex, phone
         from java_study.staff
@@ -97,20 +80,5 @@ WHERE
     <delete id="deleteById">
         delete from java_study.staff where id = #{id}
     </delete>
-
-    <select id="count" resultType="int">
-        select count(1) from java_study.staff;
-    </select>
-
-    <!--批量插入-->
-    <insert id="addBatch" parameterType="list">
-        insert into
-        java_study.staff
-        (id, name, age, sex, phone)
-        values
-        <foreach collection="list" item="emp" separator=",">
-            (#{emp.id}, #{emp.name}, #{emp.age}, #{emp.sex}, #{emp.phone})
-        </foreach>
-    </insert>
 
 </mapper>
