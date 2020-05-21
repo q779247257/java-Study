@@ -1,8 +1,4 @@
-package 算法;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+package 算法.简单;
 
 /**
  * @Author: 轩轩

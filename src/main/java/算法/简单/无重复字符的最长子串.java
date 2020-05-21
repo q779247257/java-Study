@@ -1,4 +1,4 @@
-package 算法;
+package 算法.简单;
 
 import org.junit.Test;
 

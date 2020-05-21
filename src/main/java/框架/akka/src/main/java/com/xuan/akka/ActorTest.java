@@ -24,7 +24,6 @@ public class ActorTest {
 
             ActorRef testActorRef = actorSystem.actorOf(props, "demo_actor");
 
-
             //创建消息类
             MsgPojo sendPojo = new MsgPojo(1, "这是从AkkaTestClient发送的消息");
 
