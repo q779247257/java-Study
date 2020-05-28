@@ -1,7 +1,9 @@
 package com.xuan;
 
+import com.googlecode.protobuf.format.JsonFormat;
 import com.xuan.protobuf_pojo.DemoProto;
 import org.junit.Test;
+
 
 /**
  * @创建人： xuanxuan
@@ -27,5 +29,18 @@ public class demoProtobufTest {
     public void testProtobufEnum(){
         int number = DemoProto.TargetType.sky.getNumber();
         System.out.println("info:"+number);
+    }
+
+    /**
+     * proto类序列化为json
+     */
+    @Test
+    public void testProtoToJson(){
+        DemoProto.Clazz.Builder builder = DemoProto.Clazz.newBuilder();
+        //同学1
+        DemoProto.Clazz classmate = builder.addClassmate(DemoProto.Classmate.newBuilder().setName("轩轩").setSex(true).build()).build();
+        String s = JsonFormat.printToString(classmate);
+
+        System.out.println("json化之后："+s);
     }
 }
