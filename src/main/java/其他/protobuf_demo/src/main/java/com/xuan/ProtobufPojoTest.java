@@ -24,7 +24,7 @@ public class ProtobufPojoTest {
                 .putOther("key键位","value值")
                 .addCars(PersonProto.Car.newBuilder().setColoe("黄色").setName("猫咪").build());
         PersonProto.Person person = builder.build();
-        System.out.println("获取protobuf类后："+person);
+        System.out.println("获取protobuf类后："+person.getCarsList());
 
         //todo 序列化 通过protobuf 生成的java类的内部方法进行序列化
         byte[] bytes = person.toByteArray();

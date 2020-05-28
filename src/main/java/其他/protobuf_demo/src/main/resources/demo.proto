@@ -1,0 +1,36 @@
+//声明为protobuf3
+syntax = "proto3";
+//声明生成的java文件的包名
+option java_package = "com.xuan.protobuf_pojo";
+//声明生成的java文件的名称
+option java_outer_classname = "DemoProto";
+
+/** 班级 */
+message Clazz {
+    repeated Classmate classmate = 1;
+}
+
+/** 同学 */
+message Classmate{
+    /** 名字 */
+    string name = 1;
+    /** 性别 */
+    bool sex =2;
+}
+
+enum TargetType {
+//    /** 错误类型或无法攻击*/
+//    errorTarget = 0;
+//    /** 地面*/
+//    ground = 1;
+//    /** 天空 */
+//    sky = 2;
+//    /** 天空和地面 */
+//    groundAndSky = 3;
+//    /** 建筑 */
+//    building = 4;
+//    /** 同学 */
+    Classmate = 1;
+
+}
+
