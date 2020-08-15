@@ -2,6 +2,10 @@ package 算法.初级算法;
 
 import java.util.Arrays;
 
+/**
+ * 力扣算法题
+ * @url: https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2gy9m/
+ */
 public class 删除排序数组中的重复项 {
     public static void main(String[] args) {
         int[] arr = {1,1,2,2,3,3};
