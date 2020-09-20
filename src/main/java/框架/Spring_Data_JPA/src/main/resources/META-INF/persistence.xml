@@ -9,6 +9,7 @@
 
         <!--添加持久化的类-->
         <class>com.jpaxuan.pojo.Customer</class>
+        <class>com.jpaxuan.pojo.Order</class>
 
         <properties>
             <!--链接数据库的基本信息-->

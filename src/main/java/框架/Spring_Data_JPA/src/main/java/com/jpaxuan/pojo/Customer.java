@@ -14,13 +14,13 @@ import java.util.Date;
 @Entity//标明这是一个持久化类
 public class Customer {
     @Id//主键标识
-    @TableGenerator(name = "ID_GENERATOR",
-                    table = "jpa_id",//表名
-                    pkColumnName = "PK_NAME",
-            pkColumnValue = "CUSTOMER_ID",
-            valueColumnName = "PK_VALUE",
-            allocationSize = 100//每次张100
-    )
+//    @TableGenerator(name = "ID_GENERATOR",
+//                    table = "jpa_id",//表名
+//                    pkColumnName = "PK_NAME",
+//            pkColumnValue = "CUSTOMER_ID",
+//            valueColumnName = "PK_VALUE",
+//            allocationSize = 100//每次张100
+//    )
     /**
      * –IDENTITY：采用数据库ID自增长的方式来自增主键字段，Oracle 不支持这种方式；
      * –AUTO： JPA自动选择合适的策略，是默认选项；

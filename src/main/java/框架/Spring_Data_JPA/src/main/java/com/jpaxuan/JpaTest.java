@@ -1,6 +1,7 @@
 package com.jpaxuan;
 
 import com.jpaxuan.pojo.Customer;
+import com.jpaxuan.pojo.Order;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -139,6 +140,49 @@ public class JpaTest {
         entityManager.refresh(customer); //加上 refresh后会执行2条sql数据  再发送看对象是否是最新的
     }
 
+    /**
+     * 单向多对一
+     *  一个用户多个订单
+     *
+     *  建议：先增加单个的一方 再增加 多个一方 ， 这样 jpa可以少执行一个 update 语句
+     */
+    @Test
+    public void testManyToOne(){
 
+        //建立关联关系
+        Customer customer = new Customer("多对1", "779247267@163.com", 18);
+        Order order = new Order("订单名称", customer);
+
+        //执行保存操作
+        entityManager.persist(customer);
+        entityManager.persist(order);
+    }
+
+    /**
+     * 查询嵌套的单项多对一   对象时候，默认使用 左连接进行查询
+     */
+    @Test
+    public void testFindManyToOne(){
+        Order order = entityManager.find(Order.class, 13);
+//        System.out.println(order.getCustomer());
+    }
+
+    /**
+     * 删除时候 不能直接删除1的一方，因为有外键约束 会报错
+     */
+    @Test
+    public void testManyToOneRemove(){
+        Customer customer = entityManager.find(Customer.class, 14);
+        entityManager.remove(customer);
+    }
+
+    /**
+     * 多的一方修改 一的一方
+     */
+    @Test
+    public void testManyToOneUpdate(){
+        Order order = entityManager.find(Order.class, 13);
+        order.getCustomer().setAge(77);
+    }
 
 }
