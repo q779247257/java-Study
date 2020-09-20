@@ -29,4 +29,12 @@ JPA规范要求在类路径的 META_INF 目录下放置 persistence.xml 文件�
      * length 长度约束
      */
     @Column(name = "email",nullable = true,length = 122 )
+    @Transient//，不需要映射为数据库的一列可加上此注解 加此注解可以屏蔽    @Basic
+        /**
+     * 主要用来指定时间的类型
+     * DATE 精确到天
+     * DATETIME 精确到时间分秒
+     * TIMESTAMP 时间卓
+     */
+    @Temporal(value = TemporalType.TIMESTAMP)//时间戳
 ```

@@ -31,7 +31,7 @@ validate: 启动时验证现有schema与你配置的hibernate是否一致，如�
 -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
-            <!--<property name="hibernate.format_sql" value="true"/>-->
+            <property name="hibernate.format_sql" value="true"/>
        </properties>
     </persistence-unit>
 
