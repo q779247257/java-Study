@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="jpa_test">
+        <!--配置使用什么 ORM 框架来 为JPA 实现-->
+        <!--<provider>org.hibernate.ejb.HibernateQuery</provider>-->
+
+        <!--添加持久化的类-->
+        <class>com.jpaxuan.pojo.Customer</class>
+
+        <properties>
+            <!--链接数据库的基本信息-->
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.jdbc.Driver" />
+                      <!--value="com.mysql.cj.jdbc.Driver" />-->
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/java_study?serverTimezone=UTC&amp;serverTimezone=GMT&amp;characterEncoding=utf-8" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="root" />
+            <property name="eclipselink.logging.level" value="SEVERE" />
+            <property name="eclipselink.ddl-generation"
+                      value="create-or-extend-tables" />
+
+<!--
+create：表示启动的时候先drop，再create
+create-drop: 也表示创建，只不过再系统关闭前执行一下drop
+update: 这个操作启动的时候会去检查schema是否一致，如果不一致会做scheme更新
+validate: 启动时验证现有schema与你配置的hibernate是否一致，如果不一致就抛出异常，并不做更新
+-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <!--<property name="hibernate.format_sql" value="true"/>-->
+       </properties>
+    </persistence-unit>
+
+</persistence>
+

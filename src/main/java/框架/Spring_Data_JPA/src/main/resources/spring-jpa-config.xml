@@ -43,9 +43,9 @@
 
     <!--数据源-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/java_study?serverTimezone=GMT"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/java_study?serverTimezone=GMT&amp;characterEncoding=utf-8"/>
         <property name="user" value="root"/>
-        <property name="password" value="test123456"/>
+        <property name="password" value="root"/>
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
     </bean>
 
