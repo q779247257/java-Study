@@ -1,6 +1,8 @@
 package com.jpaxuan;
 
 import com.jpaxuan.pojo.Customer;
+import com.jpaxuan.pojo.Department;
+import com.jpaxuan.pojo.Manager;
 import com.jpaxuan.pojo.Order;
 import org.junit.After;
 import org.junit.Before;
@@ -182,7 +184,50 @@ public class JpaTest {
     @Test
     public void testManyToOneUpdate(){
         Order order = entityManager.find(Order.class, 13);
-        order.getCustomer().setAge(77);
+        order.getCustomer().setAge(888);
+    }
+
+    /**
+     * 双向 一对一 的关联关系 ，建议先保存不维护关联关系的一方，即没有外键的一方，这样不会多好处update语句
+     */
+    @Test
+    public void  testOneToOne(){
+        Manager mgr = new Manager();
+        mgr.setMgrName("M-AAA");
+
+        Department department = new Department();
+        department.setDeptName("D-AAA");
+        mgr.setDept(department);
+        department.setMgr(mgr);
+
+        //执行保存操作
+        entityManager.persist(mgr);
+        entityManager.persist(department);
+    }
+
+    /**
+     * 默认情况下，若维护关联关系的一方，则会通过左外连接获取其关联的对象
+     * 但可以通过  @OneToOne(fetch = FetchType.LAZY) 来修改加载策略
+     */
+    @Test
+    public void  testOneToOneFind(){
+        Department department = entityManager.find(Department.class, 50);
+        System.out.println(department.getDeptName());
+        System.out.println(department.getMgr().getClass().getName());
+    }
+
+    /**
+     * 默认情况下，若获取不维护关联关系的一方，则会通过左外连接获取其关联的对象
+     * 但可以通过  @OneToOne(fetch = FetchType.LAZY) 来修改加载策略.但依然 会发送 SQL 语句来初始化其关联的对象
+     * 着说明不维护关联关系的一方不建议修改 fetch 属性值
+     */
+    @Test
+    public void  testOneToOneFind2(){
+        Manager mgr = entityManager.find(Manager.class, 51);
+
+        System.out.println(mgr.getMgrName());
+        System.out.println(mgr.getDept().getClass().getName());
+
     }
 
 }

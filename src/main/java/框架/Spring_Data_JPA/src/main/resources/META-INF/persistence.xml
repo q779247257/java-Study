@@ -12,6 +12,8 @@
         <class>com.jpaxuan.pojo.Order</class>
         <class>com.jpaxuan.pojo.CustonmerToOrders</class>
         <class>com.jpaxuan.pojo.OrderOne</class>
+        <class>com.jpaxuan.pojo.Manager</class>
+        <class>com.jpaxuan.pojo.Department</class>
 
         <properties>
             <!--链接数据库的基本信息-->
