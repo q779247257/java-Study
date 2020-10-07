@@ -322,3 +322,69 @@ public class JpaOneToMany {
 }
 ```
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006153603609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxNzc5MjQ3MjU3,size_16,color_FFFFFF,t_70#pic_center)
+
+### 开启二级缓存
+
+```java
+/**
+ * @Author: 轩轩
+ * @Date: 2020/10/7 23:48
+ * @description: Jpa二级关系单元测试
+ */
+public class JpaTwoCacheTest {
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
+    private EntityTransaction entityTransaction;
+
+
+    @Before
+    public void init(){
+        entityManagerFactory = Persistence.createEntityManagerFactory("jpa_test");
+        entityManager = entityManagerFactory.createEntityManager();
+        entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();//开启事务.
+    }
+
+    @After
+    public void destroy(){
+        entityTransaction.commit();//提交事务
+
+        //关闭管理器和工厂
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    /**
+     *  第一次查询的时候  从数据中查询
+     *  第二次查询的时候 从一级缓存中查询
+     *  所以只会执行一条sql
+     */
+    @Test
+    public void test001(){
+        Customer customer1 = entityManager.find(Customer.class, 1);
+        Customer customer2 = entityManager.find(Customer.class, 1);
+    }
+
+    /**
+     *  第一次查询的时候  从数据中查询
+     *  关闭重启 对象管理器 会清除一级缓存
+     *  所以 这个第二次查询的时候
+     *  会出现执行sql
+     */
+    @Test
+    public void test002(){
+        Customer customer1 = entityManager.find(Customer.class, 1);
+        
+
+        entityManager = entityManagerFactory.createEntityManager();
+        entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();//开启事务.
+        Customer customer2 = entityManager.find(Customer.class, 1);
+    }
+
+
+
+}
+```
+
+开启二级缓存参考：https://www.cnblogs.com/sishishinn/p/5474398.html

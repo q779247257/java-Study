@@ -92,6 +92,11 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String lastName, int age) {
+        this.lastName = lastName;
+        this.age = age;
+    }
+
     public Integer getId() {
         return id;
     }
