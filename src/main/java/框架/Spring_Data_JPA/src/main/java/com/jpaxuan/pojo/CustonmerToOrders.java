@@ -17,7 +17,9 @@ public class CustonmerToOrders {
     @GeneratedValue(strategy = GenerationType.AUTO)//主键生成方式
     private Integer id;
 
-    @JoinColumn(name = "coutomer_one_id")//一对多的关联外键
+
+
+    @JoinColumn(name = "coutomer_one_id")//一对多的关联外键 此外键将在目标类所在的表中创建外键
 //    @OneToMany(fetch = FetchType.EAGER)//一对多映射的时候默认使用懒加载
     @OneToMany(cascade = {CascadeType.REMOVE})
     private Set<OrderOne> orderOnes = new HashSet<>();
