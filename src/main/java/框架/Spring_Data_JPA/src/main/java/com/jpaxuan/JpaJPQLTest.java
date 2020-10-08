@@ -93,6 +93,22 @@ public class JpaJPQLTest {
 
     }
 
+    /** 删除或更新操作 */
+    @Test
+    public void testUpdateOrDelete(){
+        //更新数据
+//        String jpql = "update Customer c set c.lastName = ?1 where c.id = ?2 ";
+//        Query query = entityManager.createQuery(jpql).setParameter(1, "更新后的名字").setParameter(2, 1);
+//        query.executeUpdate();//执行更新语句
+
+
+        //删除数据
+        String delJpql = "delete from Customer c where c.id = ?1";
+        Query query1 = entityManager.createQuery(delJpql).setParameter(1,4);
+        query1.executeUpdate();
+
+    }
+
     /**
      * 左连接查询
      *
@@ -108,9 +124,24 @@ public class JpaJPQLTest {
     }
 
     /**
+     * 子查询
+     */
+    @Test
+    public void testSubQuery(){
+        //查询所有 Custonmer 的lastName 为 多对11 的Order
+        String jpql = "select o from Order o where o.customer = (select c from Customer c where c.lastName = ?1)";
+
+        Query query = entityManager.createQuery(jpql).setParameter(1,"多对11");
+        List resultList = query.getResultList();
+        System.out.println(resultList);
+    }
+
+    /**
      * createNativeQuery 适用于本地sql 相当于在数据库中跑的sql语句
      */
     @Test
+
+
     public void testNativeQuery(){
         String sql = "select age FROM jpa_coutomer WHERE id = ?";
 
