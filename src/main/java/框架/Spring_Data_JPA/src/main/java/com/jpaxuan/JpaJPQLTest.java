@@ -1,6 +1,8 @@
 package com.jpaxuan;
 
 import com.jpaxuan.pojo.Customer;
+import com.jpaxuan.pojo.CustonmerToOrders;
+import org.hibernate.jpa.QueryHints;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,6 +67,85 @@ public class JpaJPQLTest {
         query.setParameter(1,1);
         List list = query.getResultList();
         list.forEach(item -> System.out.println(item));
+    }
+
+
+    /** Jpql 使用 Order By */
+    @Test
+    public void testOrderBy(){
+        String jpql = " from Customer c WHERE c.age > ?1 order by c.age DESC";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter(1,12);
+
+        List<Customer> list = query.getResultList();
+        System.out.println(list.size());
+
+    }
+
+    /** 查询 order 数量 大于1 的 Customer 使用 gruop by */
+    @Test
+    public void testGroupBy(){
+        String jpql = " select o.customer from Order o group by o.customer having count (o.id) > 1";
+        Query query = entityManager.createQuery(jpql);
+
+        List<Customer> list = query.getResultList();
+        System.out.println(list.size());
+
+    }
+
+    /**
+     * 左连接查询
+     *
+     * 注意 jpql 中 fetch 不可以去掉 这样得到的将是一个对象 如果去掉fetch 的话 得到的将会是一个 object
+     */
+    @Test
+    public void testLeftJoIoinFetch(){
+        String jpql = "select c from CustonmerToOrders c left join fetch c.orderOnes where c.id =?1";
+        Query query = entityManager.createQuery(jpql).setParameter(1,43);
+        CustonmerToOrders customer = (CustonmerToOrders)query.getSingleResult();
+        System.out.println(customer.getOrderOnes());
+
+    }
+
+    /**
+     * createNativeQuery 适用于本地sql 相当于在数据库中跑的sql语句
+     */
+    @Test
+    public void testNativeQuery(){
+        String sql = "select age FROM jpa_coutomer WHERE id = ?";
+
+        Query query = entityManager.createNativeQuery(sql).setParameter(1,1);
+
+        Object singleResult = query.getSingleResult();
+        System.out.println(singleResult);
+    }
+
+    /**
+     * 使用 NameQuery 进行查询  NameQuery 需要在 类上边进行标注 jpql 语句 和 名称 根据名称来获取
+     */
+    @Test
+    public void testNameQuery(){
+        Query testNameQuery = entityManager.createNamedQuery("testNameQuery").setParameter(1,3);
+        Object singleResult = testNameQuery.getSingleResult();
+        System.out.println(singleResult);
+        List resultList = testNameQuery.getResultList();
+        System.out.println(resultList);
+    }
+
+    /** 测试查询缓存*/
+    @Test
+    public void testQueryCache(){
+        String jpql = " from Customer c WHERE c.age > ?1";
+        Query query = entityManager.createQuery(jpql).setHint(QueryHints.HINT_CACHEABLE,true);
+        query.setParameter(1,18);
+
+        List<Customer> list = query.getResultList();
+        System.out.println(list.size());
+
+        //再查询一遍
+        query = entityManager.createQuery(jpql).setParameter(1,18).setHint(QueryHints.HINT_CACHEABLE,true);
+        list = query.getResultList();
+        System.out.println(list.size());
     }
 
 

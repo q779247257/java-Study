@@ -10,6 +10,7 @@ import java.util.Date;
  * @description:
  */
 
+@NamedQuery(name = "testNameQuery",query = "select c from Customer c WHERE c.id = ?1")
 @Table(name = "jpa_coutomer")//表示数据库中的表名
 @Entity//标明这是一个持久化类
 public class Customer {

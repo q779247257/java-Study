@@ -388,3 +388,12 @@ public class JpaTwoCacheTest {
 ```
 
 开启二级缓存参考：https://www.cnblogs.com/sishishinn/p/5474398.html
+
+## JPQL
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020100800351640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxNzc5MjQ3MjU3,size_16,color_FFFFFF,t_70#pic_center)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201008003616968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxNzc5MjQ3MjU3,size_16,color_FFFFFF,t_70#pic_center)
+
+![image-20201008003658224](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20201008003658224.png)
+
