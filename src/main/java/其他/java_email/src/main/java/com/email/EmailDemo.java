@@ -43,7 +43,7 @@ public class EmailDemo {
         InternetAddress form = new InternetAddress(props.getProperty("mail.user"));
         message.setFrom(form);
         // 设置收件人的邮箱
-        InternetAddress to = new InternetAddress("779247257@qq.com");
+        InternetAddress to = new InternetAddress("xuanandjava@163.com");
         message.setRecipient(Message.RecipientType.TO, to);
         // 设置邮件标题
         message.setSubject("标题66666");

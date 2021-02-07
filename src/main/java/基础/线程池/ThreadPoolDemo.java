@@ -1,39 +1,54 @@
 package 基础.线程池;
 
-
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: 轩轩
- * @Date: 2020/9/14 18:09
- * @description: newCachedThreadPool 线程池
+ * @Date: 2021/2/7 18:13
+ * @description:
  */
 public class ThreadPoolDemo {
-    public static void main(String[] args) {
 
-        /**
-         * 1.创建一个可缓存的线程池。如果线程池的大小超过了处理任务所需要的线程，那么就会回收部分空闲（60秒不执行任务）的线程<br>
-         * 2.当任务数增加时，此线程池又可以智能的添加新线程来处理任务<br>
-         * 3.此线程池不会对线程池大小做限制，线程池大小完全依赖于操作系统（或者说JVM）能够创建的最大线程大小<br>
-         *
-         */
-        ExecutorService executorService = Executors.newCachedThreadPool();
+    public static void main(String[] args) throws InterruptedException {
+        Random random = new Random();
 
-        for (int i = 1; i <= 10; i++) {
-            final int ii = i;
-            try {
-                Thread.sleep(ii * 1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            executorService.execute(()-> {
-                System.out.println("线程名称：" + Thread.currentThread().getName() + "，执行" + ii);
-            });
+        ExecutorService executorService1 = Executors.newCachedThreadPool();//比较快的
+        ExecutorService executorService2 = Executors.newFixedThreadPool(10);//比较慢的
+        ExecutorService executorService3 = Executors.newSingleThreadExecutor();//最慢的
+
+        long currentTimeMillis = System.currentTimeMillis();
+
+        for (int i = 0; i < 100; i++) {
+            executorService1.execute(new MyTask(i+1));
+
         }
-
     }
 
 
 }
+
+class MyTask implements Runnable{
+
+    private int i ;
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + "--" + i);
+
+//        try {
+            //模拟业务逻辑
+//            Thread.sleep(1000L);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public MyTask(int i) {
+        this.i = i;
+    }
+}
+

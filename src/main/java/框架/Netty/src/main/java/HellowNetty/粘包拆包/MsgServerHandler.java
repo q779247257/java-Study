@@ -30,8 +30,10 @@ public class MsgServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf in = (ByteBuf)msg;
         String request = in.toString(CharsetUtil.UTF_8);
         System.out.println("Server Accept:"+request+counter.incrementAndGet());
+
         //应答客户端
         String resp  = "你好！" + request + System.getProperty("line.separator");
+
         ctx.write(Unpooled.copiedBuffer(resp,CharsetUtil.UTF_8));
     }
 
@@ -43,9 +45,9 @@ public class MsgServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         //flush掉所有的数据
-        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).
+        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER);
                 //当flush完成以后，关闭连接
-                        addListener(ChannelFutureListener.CLOSE);
+//                        .addListener(ChannelFutureListener.CLOSE);
     }
     /**
      * 发生异常后的处理

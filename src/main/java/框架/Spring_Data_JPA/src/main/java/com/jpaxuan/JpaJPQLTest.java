@@ -140,8 +140,6 @@ public class JpaJPQLTest {
      * createNativeQuery 适用于本地sql 相当于在数据库中跑的sql语句
      */
     @Test
-
-
     public void testNativeQuery(){
         String sql = "select age FROM jpa_coutomer WHERE id = ?";
 

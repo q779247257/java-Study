@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.JsonEncoding;
 import com.xuan.entity.Staff;
 import com.xuan.service.StaffService;
 import org.junit.Test;
@@ -36,6 +37,7 @@ public class StaffTest {
         list.stream().forEach(item ->{
             System.out.println("intem:"+item);
         });
+
 
         list.stream().forEach(new Consumer<Staff>() {
             @Override

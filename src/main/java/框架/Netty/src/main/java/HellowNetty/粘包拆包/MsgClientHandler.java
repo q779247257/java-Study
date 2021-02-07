@@ -20,6 +20,8 @@ public class MsgClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf msg) throws Exception {
         System.out.println("Client accetp :"+msg.toString(CharsetUtil.UTF_8));
+        System.out.println("客户端成功接入消息，服务器主动断开");
+        channelHandlerContext.channel().close();
     }
     /**
      * 客户端端被通知channer活跃以后，或者说通道建立之后，触发此函数
@@ -34,7 +36,6 @@ public class MsgClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
             msg.writeBytes(rendValue.getBytes());
             ctx.writeAndFlush(Unpooled.copiedBuffer(rendValue,CharsetUtil.UTF_8));
         }
-
     }
 
     /**

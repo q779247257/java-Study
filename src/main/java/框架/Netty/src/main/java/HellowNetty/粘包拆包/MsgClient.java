@@ -47,6 +47,7 @@ public class MsgClient {
             //加上sync()后，连接到远程节点，阻塞等待直到连接完成
             ChannelFuture f = b.connect().sync();
             //阻塞，直到channel关闭
+//            f.channel().closeFuture().sync();
             f.channel().closeFuture().sync();
         } finally {
             //释放资源，关闭连接
