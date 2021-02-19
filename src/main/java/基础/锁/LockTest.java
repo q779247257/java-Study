@@ -1,5 +1,7 @@
 package 基础.锁;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @Author: 轩轩
  * @Date: 2021/2/19 17:29
@@ -7,6 +9,9 @@ package 基础.锁;
  */
 public class LockTest {
     public static void main(String[] args) throws InterruptedException {
+
+
+
         A a = new A();
 
         long start = System.currentTimeMillis();

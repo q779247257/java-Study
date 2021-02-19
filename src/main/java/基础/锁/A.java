@@ -1,5 +1,7 @@
 package 基础.锁;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @Author: 轩轩
  * @Date: 2021/2/19 17:27
@@ -9,8 +11,11 @@ public class A {
     private int num = 0;
 
     public int getNum() {
-        return num;
+//        return num;
+        return atomicInteger.get();
     }
+
+    private AtomicInteger atomicInteger = new AtomicInteger();
 
 
     /*
@@ -28,6 +33,7 @@ public class A {
 
 
     public  void increase(){
-        num++;
+//        num++;
+        atomicInteger.incrementAndGet();
     }
 }
