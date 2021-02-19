@@ -2,9 +2,7 @@ package 基础.线程池;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @Author: 轩轩
@@ -20,11 +18,19 @@ public class ThreadPoolDemo {
         ExecutorService executorService2 = Executors.newFixedThreadPool(10);//比较慢的
         ExecutorService executorService3 = Executors.newSingleThreadExecutor();//最慢的
 
+        /*
+            一般使用自定义的线程池
+            存放优先级  1、主线程  2、队列 3、非主线程
+            执行优先级  1、主线程  2、非主线程  3、队列
+         */
+        ThreadPoolExecutor executorService4 = new ThreadPoolExecutor(10, 20,
+                0L, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(10));
+
         long currentTimeMillis = System.currentTimeMillis();
 
         for (int i = 0; i < 100; i++) {
-            executorService1.execute(new MyTask(i+1));
-
+            executorService4.execute(new MyTask(i+1));
         }
     }
 
@@ -37,14 +43,14 @@ class MyTask implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + "--" + i);
+                System.out.println(Thread.currentThread().getName() + "--" + i);
 
-//        try {
-            //模拟业务逻辑
-//            Thread.sleep(1000L);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+//            模拟业务逻辑
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public MyTask(int i) {
