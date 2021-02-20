@@ -1,6 +1,8 @@
 package 基础.锁;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author: 轩轩
@@ -8,9 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description:
  */
 public class LockTest {
+    private Lock lock = new ReentrantLock();
     public static void main(String[] args) throws InterruptedException {
-
-
 
         A a = new A();
 
@@ -29,6 +30,7 @@ public class LockTest {
             a.increase();
         }
         t1.join();
+
 
 
         long end = System.currentTimeMillis();
