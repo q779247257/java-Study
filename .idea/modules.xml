@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Flowalbe/Flowalbe.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Flowalbe/Flowalbe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Netty/Netty.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Netty/Netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/POI/POI.iml" filepath="$PROJECT_DIR$/src/main/java/框架/POI/POI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/SSM整合/SSM整合.iml" filepath="$PROJECT_DIR$/src/main/java/框架/SSM整合/SSM整合.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring-Mybatis整合/Spring-Mybatis整合.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring-Mybatis整合/Spring-Mybatis整合.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/临时/SpringMVC验证器/SpringMVC验证器.iml" filepath="$PROJECT_DIR$/src/main/java/临时/SpringMVC验证器/SpringMVC验证器.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_AOP/Spring_AOP.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_AOP/Spring_AOP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_Data_JPA/Spring_Data_JPA.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_Data_JPA/Spring_Data_JPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_Data_JPA/Spring_Data_JPAmodel.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_Data_JPA/Spring_Data_JPAmodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_IOC/Spring_IOC.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_IOC/Spring_IOC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_MVC/Spring_MVC.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_MVC/Spring_MVC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_事务/Spring_事务.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_事务/Spring_事务.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/WebMagic/WebMagic.iml" filepath="$PROJECT_DIR$/src/main/java/框架/WebMagic/WebMagic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/网络编程/WebSocket/WebSocket.iml" filepath="$PROJECT_DIR$/src/main/java/网络编程/WebSocket/WebSocket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/akka/akka.iml" filepath="$PROJECT_DIR$/src/main/java/框架/akka/akka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Spring_IOC/springMvc @DateTimeFormat 示例/day_01_springMvc.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Spring_IOC/springMvc @DateTimeFormat 示例/day_01_springMvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/小项目/empsys/empsys.iml" filepath="$PROJECT_DIR$/src/main/java/小项目/empsys/empsys.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/flowable/flowable.iml" filepath="$PROJECT_DIR$/src/main/java/框架/flowable/flowable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/其他/java_email/java_email.iml" filepath="$PROJECT_DIR$/src/main/java/其他/java_email/java_email.iml" />
+      <module fileurl="file://$PROJECT_DIR$/likou_subject.iml" filepath="$PROJECT_DIR$/likou_subject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Mybatis/mybatis.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Mybatis/mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/其他/protobuf_demo/protobuf_demo.iml" filepath="$PROJECT_DIR$/src/main/java/其他/protobuf_demo/protobuf_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/Shiro/ShiroAdmin/shiro_admin.iml" filepath="$PROJECT_DIR$/src/main/java/框架/Shiro/ShiroAdmin/shiro_admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/shiro_myabtis_ini/shiro_myabtis_ini.iml" filepath="$PROJECT_DIR$/src/main/java/框架/shiro_myabtis_ini/shiro_myabtis_ini.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/框架/shop-qf-ssm/shop-qf-ssm/shop-qf-ssm.iml" filepath="$PROJECT_DIR$/src/main/java/框架/shop-qf-ssm/shop-qf-ssm/shop-qf-ssm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/网络编程/原生JDK网络编程/原生JDK网络编程.iml" filepath="$PROJECT_DIR$/src/main/java/网络编程/原生JDK网络编程/原生JDK网络编程.iml" />
+    </modules>
+  </component>
+</project>

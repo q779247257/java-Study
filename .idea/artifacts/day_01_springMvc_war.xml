@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="day_01_springMvc:war">
+    <output-path>$PROJECT_DIR$/src/main/java/框架/Spring_IOC/springMvc @DateTimeFormat 示例/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>day_01_springMvc</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="shop.war">
+      <element id="artifact" artifact-name="day_01_springMvc:war exploded" />
+    </root>
+  </artifact>
+</component>

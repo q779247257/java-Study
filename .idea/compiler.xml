@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="akka" />
+        <module name="day_01_springMvc" />
+        <module name="day_01_springMvc (1)" />
+        <module name="empsys" />
+        <module name="flowable" />
+        <module name="Flowalbe" />
+        <module name="java_email" />
+        <module name="likou_subject" />
+        <module name="mybatis" />
+        <module name="Netty" />
+        <module name="POI" />
+        <module name="protobuf_demo" />
+        <module name="shiro_admin" />
+        <module name="shiro_myabtis_ini" />
+        <module name="shop-qf-ssm" />
+        <module name="sms" />
+        <module name="Spring-Mybatis整合" />
+        <module name="Spring_AOP" />
+        <module name="Spring_Data_JPA" />
+        <module name="Spring_IOC" />
+        <module name="Spring_MVC" />
+        <module name="Spring_事务" />
+        <module name="SpringMVC验证器" />
+        <module name="SSM整合" />
+        <module name="WebMagic" />
+        <module name="WebSocket" />
+        <module name="原生JDK网络编程" />
+        <module name="阿里云" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="akka" target="1.8" />
+      <module name="com.web.socket" target="1.5" />
+      <module name="comwebsocket" target="8" />
+      <module name="comxuanspringmvc" target="1.8" />
+      <module name="day_01_springMvc" target="1.7" />
+      <module name="day_01_springMvc (1)" target="1.7" />
+      <module name="demo" target="1.8" />
+      <module name="empsys" target="1.8" />
+      <module name="Empsys" target="1.8" />
+      <module name="flowable" target="1.8" />
+      <module name="Flowalbe" target="1.8" />
+      <module name="java_email" target="1.8" />
+      <module name="likou_subject" target="1.8" />
+      <module name="mybatis" target="1.8" />
+      <module name="Netty" target="8" />
+      <module name="POI" target="1.8" />
+      <module name="protobuf_demo" target="1.8" />
+      <module name="shiro_admin" target="1.8" />
+      <module name="shiro_myabtis_ini" target="1.8" />
+      <module name="shop-qf-ssm" target="1.7" />
+      <module name="sms" target="1.8" />
+      <module name="Spring-Mybatis整合" target="1.8" />
+      <module name="Spring_AOP" target="1.8" />
+      <module name="Spring_Data_JPA" target="1.8" />
+      <module name="Spring_IOC" target="1.8" />
+      <module name="Spring_MVC" target="1.8" />
+      <module name="Spring_事务" target="1.8" />
+      <module name="springMvc @DateTimeFormat 示例" target="1.7" />
+      <module name="SpringMVC验证器" target="1.8" />
+      <module name="SSM整合" target="1.8" />
+      <module name="WebMagic" target="1.5" />
+      <module name="WebSocket" target="1.8" />
+      <module name="xxx-20190525-lianxi" target="1.7" />
+      <module name="原生JDK网络编程" target="8" />
+      <module name="阿里云" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="WebSocket" options="-parameters" />
+      <module name="demo" options="-parameters" />
+      <module name="shiro_admin" options="-parameters" />
+      <module name="sms" options="-parameters" />
+    </option>
+  </component>
+</project>

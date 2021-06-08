@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="comxuanspringmvc:war exploded">
+    <output-path>$PROJECT_DIR$/src/main/java/框架/Spring_MVC/com.xuan.springmvc/target/com.xuan.springmvc</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>comxuanspringmvc</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="comxuanspringmvc" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/框架/Spring_MVC/com.xuan.springmvc/target/com.xuan.springmvc/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="comxuanspringmvc/web/Web" />
+    </root>
+  </artifact>
+</component>

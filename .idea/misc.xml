@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/临时/Empsys" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/临时/springMvc @DateTimeFormat 示例" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/临时/SpringMVC验证器" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/小项目/empsys" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/框架/shop-qf-ssm/shop-qf-ssm" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/框架/Spring_IOC/springMvc @DateTimeFormat 示例" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/框架/Spring_MVC" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/框架/Spring_MVC/com.xuan.springmvc" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/框架/SSM整合" />
+    <file type="web" url="file://$PROJECT_DIR$/src/main/java/框架/xxx-20190525-lianxi" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Shiro/ShiroAdmin/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Netty/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/网络编程/原生JDK网络编程/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/网络编程/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/网络编程/WebSocket/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_Frame/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/game/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_AOP/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_IOC/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_事务/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring-Mybatis整合/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_MVC/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/SSM整合/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/xxx-20190525-lianxi/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/shop-qf-ssm/shop-qf-ssm/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/boot-sms/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/day_01_springMvc/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_MVC/springMvc @DateTimeFormat 示例/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/springMvc @DateTimeFormat 示例/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/day01_springmvc/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/Empsys/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/小项目/Empsys/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/SpringMVC验证器/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/小项目/empsys/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/POI/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/临时/spring-boot/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/其他/protobuf_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/shiro_ssm/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_Data_JPA/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/shiro_myabtis_ini/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Spring_IOC/springMvc @DateTimeFormat 示例/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/akka/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/其他/java_email/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/flowable流程引擎/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/Flowalbe/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/框架/WebMagic/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+</project>
