@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="empsys:war exploded">
-    <output-path>$PROJECT_DIR$/src/main/java/小项目/empsys/target/empsys-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/src/main/java/小项目/Empsys/target/empsys-1.0-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
@@ -63,7 +63,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/小项目/empsys/target/empsys-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/小项目/Empsys/target/empsys-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="empsys/web/Web" />
     </root>
